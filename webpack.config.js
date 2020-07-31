@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { InjectManifest } = require('workbox-webpack-plugin')
+const { sass } = require('svelte-preprocess-sass')
 
 module.exports = {
   mode: 'development',
@@ -36,8 +37,8 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
           'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
@@ -60,6 +61,9 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
+            preprocess : {
+              style: sass()
+            }
           }
         }
       }
