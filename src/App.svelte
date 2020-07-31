@@ -8,12 +8,12 @@ let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
 let title = 'Tracks'
 </script>
 
-<h1>{recordsUrl}</h1>
-
 {#await apiCall}
 <p>Waiting…</p>
 {:then res}
-  {JSON.stringify(res)}
+  {#each res.data as record}
+    {JSON.stringify(record.record.fields.name)}
+  {/each}
 {:catch error}
   {error}
 {/await}
