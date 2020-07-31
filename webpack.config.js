@@ -2,6 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { InjectManifest } = require('workbox-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -11,7 +12,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new InjectManifest({
+      swSrc: './src/sw.js',
+      swDest: './sw.js',
+      maximumFileSizeToCacheInBytes: 5000000
+    })
   ],
   devtool: 'inline-source-map',
   output: {
