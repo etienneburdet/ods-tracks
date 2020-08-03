@@ -4,44 +4,52 @@
 </script>
 
 <div class="track-item">
-  <strong>{fields.name}</strong>
-  <div class="details">
-    <span>{fields.sport}</span>
-    <DifficultyBadge difficulty={fields.difficulte}/>
-    <span>{fields.deniv}m</span>
-    <span>{fields.temps}h</span>
+  <img src="" alt="">
+  <div class="description">
+    <h2>{fields.name}</h2>
+    <div class="details">
+      <span>Zermatt · </span>
+      <span>{fields.deniv}m · </span>
+      <span>{fields.temps}h · </span>
+      <span>{fields.sport} · </span>
+      <DifficultyBadge difficulty={fields.difficulte}/>
+    </div>
   </div>
 </div>
 
 <style lang="scss">
-  span {
-    width: 34px;
-  }
   .track-item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
     border-bottom: 1px solid grey;
-    padding: 13px 5px;
-    width: 100vw
+    width: 100vw;
   }
+
+  img {
+    flex: 0 0 108px;
+    height: 108px;
+  }
+
+  .description {
+   padding: 8px;
+  }
+
 
   .details {
-    font-size: 13px;
+    font-size: 0.8rem;
+    flex: 1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
+    color: darkgrey;
+    & > * {
+      padding: 5px;
+    }
   }
 
-  .details > * {
-    margin: 0 8px;
-  }
-
-  strong {
-    width: 144px;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  h2 {
+    font-size: 1rem;
   }
 </style>

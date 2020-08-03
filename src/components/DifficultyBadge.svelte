@@ -11,9 +11,9 @@
 
 <style>
   span {
-    padding: 3px 8px;
+    padding: 5px 8px;
     border-radius: 8px;
-    font-size: 8px;
+    font-size: 0.8rem;
     line-height: 8px;
     color: white;
   }

@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ template: 'src/index.ejs' }),
     new MiniCssExtractPlugin(),
     new InjectManifest({
       swSrc: './src/sw.js',
@@ -61,8 +61,8 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            preprocess : {
-              style: sass()
+            preprocess: {
+              style: sass({}, { name: 'scss' })
             }
           }
         }
