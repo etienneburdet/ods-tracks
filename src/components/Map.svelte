@@ -25,7 +25,6 @@ onMount(() => {
   })
 })
 
-
 </script>
 
 <div bind:this={container}>

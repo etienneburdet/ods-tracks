@@ -12,5 +12,5 @@ const marker = new mapbox.Marker()
   .addTo(map)
 
 bounds.extend([lng, lat])
-map.fitBounds(bounds)
+map.fitBounds(bounds, { padding: 100 })
 </script>
