@@ -5,12 +5,12 @@ const { mapbox, getMap, bounds } = getContext('mapbox')
 const map = getMap()
 
 export let lat
-export let lng
+export let lon
 
 const marker = new mapbox.Marker()
-  .setLngLat([lng, lat])
+  .setLngLat([lon, lat])
   .addTo(map)
 
-bounds.extend([lng, lat])
+bounds.extend([lon, lat])
 map.fitBounds(bounds, { padding: 100 })
 </script>
