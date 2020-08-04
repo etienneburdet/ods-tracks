@@ -4,6 +4,7 @@ import loadDataFromNetworkFirst from './plugins/local-data.js'
 import TrackItem from './components/TrackItem.svelte'
 import Map from './components/Map.svelte'
 import Marker from './components/Marker.svelte'
+import List from './components/List.svelte'
 
 let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
 let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
@@ -17,9 +18,11 @@ let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
       <Marker {...record.record.fields.geo_point_2d }/>
     {/each}
   </Map>
-  {#each res.data as record}
+  <List>
+    {#each res.data as record}
     <TrackItem fields={record.record.fields}/>
-  {/each}
+    {/each}
+  </List>
 {:catch error}
   {error}
 {/await}

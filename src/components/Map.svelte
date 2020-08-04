@@ -4,10 +4,6 @@ import mapbox from 'mapbox-gl'
 
 mapbox.accessToken = 'pk.eyJ1IjoiZXRpZW5uZWJ1cmRldCIsImEiOiJja2F4bHN2MXUwMGliMnJsN2RzNXowYzQ1In0.ju6w4WN1F_CRVNXtp5L-7w';
 
-export let lat
-export let lon
-export let zoom
-
 let map
 let container
 let bounds = new mapbox.LngLatBounds()
@@ -37,7 +33,8 @@ onMount(() => {
   @import '~mapbox-gl/dist/mapbox-gl.css';
 
   div {
-    height: 100vh;
+    height: 66vh;
     width: 100vw;
+    position: fixed;
   }
 </style>
