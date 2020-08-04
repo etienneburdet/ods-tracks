@@ -12,14 +12,14 @@ let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
 {#await apiCall}
 <p>Waiting…</p>
 {:then res}
-  <!-- {#each res.data as record}
-    <TrackItem fields={record.record.fields}/>
-  {/each} -->
   <Map>
     {#each res.data as record}
       <Marker {...record.record.fields.geo_point_2d }/>
     {/each}
   </Map>
+  {#each res.data as record}
+    <TrackItem fields={record.record.fields}/>
+  {/each}
 {:catch error}
   {error}
 {/await}
