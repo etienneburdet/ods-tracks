@@ -8,14 +8,18 @@ import List from './components/List.svelte'
 
 let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
 let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
+
+const showDetails = (record) => {
+  console.log('Clicked', record)
+}
 </script>
 
 {#await apiCall}
 <p>Waiting…</p>
 {:then res}
   <Map>
-    {#each res.data as record}
-      <Marker {...record.record.fields.geo_point_2d }/>
+    {#each res.data as record (record.record.id)}
+      <Marker {...record.record.fields.geo_point_2d } on:clickedMarker={ev => showDetails(record)}/>
     {/each}
   </Map>
   <List>
