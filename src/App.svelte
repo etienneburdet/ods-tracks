@@ -4,15 +4,23 @@ import loadDataFromNetworkFirst from './plugins/local-data.js'
 import TrackItem from './components/TrackItem.svelte'
 import Map from './components/Map.svelte'
 import Marker from './components/Marker.svelte'
+import Track from './components/Track.svelte'
 import List from './components/List.svelte'
 import Details from './components/Details.svelte'
 import { selectedTrack } from './components/store.js'
 
 let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
 let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
+let trackShape
 
 const updateSelectedTrack = event => {
   $selectedTrack = event.state
+}
+
+const getShape = (res) => {
+  const record = res.data.find(el => el.record.id === $selectedTrack)
+  console.log(record.record.fields.geo_shape)
+  return record.record.fields.geo_shape
 }
 </script>
 
@@ -22,9 +30,13 @@ const updateSelectedTrack = event => {
 <p>Waiting…</p>
 {:then res}
   <Map>
-    {#each res.data as record}
-      <Marker {...record.record.fields.geo_point_2d } id={record.record.id} />
-    {/each}
+    {#if $selectedTrack}
+      <Track geoshape={getShape(res)}/>
+    {:else}
+      {#each res.data as record}
+        <Marker {...record.record.fields.geo_point_2d } id={record.record.id} />
+      {/each}
+    {/if}
   </Map>
   {#if $selectedTrack}
     <Details />
