@@ -5,13 +5,16 @@ import TrackItem from './components/TrackItem.svelte'
 import Map from './components/Map.svelte'
 import Marker from './components/Marker.svelte'
 import List from './components/List.svelte'
+import Details from './components/Details.svelte'
 import { selectedTrack } from './components/store.js'
 
 let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
 let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
 
-$selectedTrack = history.state
-$: console.log($selectedTrack)
+$: {
+    $selectedTrack = history.state
+    console.log($selectedTrack)
+}
 </script>
 
 {#await apiCall}
@@ -22,11 +25,15 @@ $: console.log($selectedTrack)
       <Marker {...record.record.fields.geo_point_2d } id={record.record.id}/>
     {/each}
   </Map>
-  <List>
-    {#each res.data as record}
-    <TrackItem fields={record.record.fields}/>
-    {/each}
-  </List>
+  {#if $selectedTrack}
+    <Details />
+  {:else}
+    <List>
+      {#each res.data as record}
+      <TrackItem fields={record.record.fields}/>
+      {/each}
+    </List>
+  {/if}
 {:catch error}
   {error}
 {/await}
