@@ -9,7 +9,7 @@
 
 <div>
   <button on:click={resetState}>X Retours liste des tracés</button>
-  {$selectedTrack.id}
+  {$selectedTrack}
 </div>
 
 <style lang="scss">
