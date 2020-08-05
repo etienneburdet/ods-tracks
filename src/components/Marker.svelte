@@ -1,9 +1,7 @@
 <script>
 import { getContext } from 'svelte'
-import { createEventDispatcher } from 'svelte'
 import { selectedTrack } from './store.js'
 
-const dispatch = createEventDispatcher()
 const { mapbox, getMap, bounds } = getContext('mapbox')
 const map = getMap()
 

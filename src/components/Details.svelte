@@ -1,14 +1,14 @@
 <script>
   import { selectedTrack } from './store.js'
 
-  const resetState = () => {
+  const backToList = () => {
     history.pushState(null,'','/')
     $selectedTrack = null
   }
 </script>
 
 <div>
-  <button on:click={resetState}>X Retours liste des tracés</button>
+  <button on:click={backToList}>X Retours liste des tracés</button>
   {$selectedTrack}
 </div>
 

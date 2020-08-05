@@ -19,7 +19,6 @@ const updateSelectedTrack = event => {
 
 const getShape = (res) => {
   const record = res.data.find(el => el.record.id === $selectedTrack)
-  console.log(record.record.fields.geo_shape)
   return record.record.fields.geo_shape
 }
 </script>
