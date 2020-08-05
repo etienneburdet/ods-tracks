@@ -23,7 +23,7 @@ const showDetails = (record) => {
     {/each}
   </Map>
   <List>
-    {#each res.data as record}
+    {#each res.data as record (record.record.id)}
     <TrackItem fields={record.record.fields}/>
     {/each}
   </List>
