@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte'
+  import { getContext, onMount } from 'svelte'
 
   const { mapbox, getMap } = getContext('mapbox')
   const map = getMap()
@@ -16,18 +16,21 @@
     'data': geoshape
   })
 
-  map.addLayer({
-    'id': 'track',
-    'type': 'line',
-    'source': 'track',
-    'layout': {
-    'line-join': 'round',
-    'line-cap': 'round'
-    },
-    'paint': {
-    'line-color': '#888',
-    'line-width': 8
-    }
+  onMount(() => {
+    map.addLayer({
+      'id': 'track',
+      'type': 'line',
+      'source': 'track',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': '#888',
+        'line-width': 8
+      }
+    })
+    return () => map.removeLayer('track')    
   })
 
   const extendBounds = (bounds, coords) => bounds.extend(coords)

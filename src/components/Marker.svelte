@@ -1,5 +1,5 @@
 <script>
-import { getContext } from 'svelte'
+import { getContext, onMount } from 'svelte'
 import { selectedTrack } from './store.js'
 
 const { mapbox, getMap, bounds } = getContext('mapbox')
@@ -11,7 +11,6 @@ export let id
 
 const marker = new mapbox.Marker()
   .setLngLat([lon, lat])
-  .addTo(map)
 
 marker.getElement()
   .addEventListener('click', ev => {
@@ -21,4 +20,9 @@ marker.getElement()
 
 bounds.extend([lon, lat])
 map.fitBounds(bounds, { padding: 100 })
+
+onMount(() => {
+  marker.addTo(map)
+  return () => marker.remove()
+})
 </script>
