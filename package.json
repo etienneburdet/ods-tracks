@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "cloudinary-core": "^2.11.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "file-loader": "^6.0.0",

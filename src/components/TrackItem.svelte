@@ -1,10 +1,13 @@
 <script>
   import DifficultyBadge from './DifficultyBadge.svelte'
+  import { getThumbnailTag } from '../plugins/cloudinary.js'
   export let fields
+
+  let thumbnailTag = getThumbnailTag(fields.image)
 </script>
 
 <div class="track-item">
-  <img src="" alt="">
+  {@html thumbnailTag}
   <div class="description">
     <h2>{fields.name}</h2>
     <div class="details">
