@@ -14,7 +14,7 @@ const marker = new mapbox.Marker()
 
 marker.getElement()
   .addEventListener('click', ev => {
-    history.pushState({ id: id }, '', `?${id}`)
+    history.pushState({ id: id }, '', `?id=${id}`)
     $selectedTrack = history.state.id
 })
 

@@ -1,31 +1,38 @@
 <script>
-import getOdsUrl from './plugins/odsql.js'
-import loadDataFromNetworkFirst from './plugins/local-data.js'
-import TrackItem from './components/TrackItem.svelte'
-import Map from './components/Map.svelte'
-import Marker from './components/Marker.svelte'
-import Track from './components/Track.svelte'
-import List from './components/List.svelte'
-import Details from './components/Details.svelte'
-import { selectedTrack } from './components/store.js'
+  import { onMount } from 'svelte'
+  import getOdsUrl from './plugins/odsql.js'
+  import loadDataFromNetworkFirst from './plugins/local-data.js'
+  import TrackItem from './components/TrackItem.svelte'
+  import Map from './components/Map.svelte'
+  import Marker from './components/Marker.svelte'
+  import Track from './components/Track.svelte'
+  import List from './components/List.svelte'
+  import Details from './components/Details.svelte'
+  import { selectedTrack } from './components/store.js'
 
-let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
-let apiCall = loadDataFromNetworkFirst('tracks', recordsUrl)
-let trackShape
+  let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
+  let promiseFromServ = loadDataFromNetworkFirst('tracks', recordsUrl)
+  let trackShape
 
-const updateSelectedTrack = event => {
-  $selectedTrack = event.state
-}
+  const updateSelectedTrack = event => {
+    console.log('pop')
+    $selectedTrack = event.state
+  }
 
-const getShape = (res) => {
-  const record = res.data.find(el => el.record.id === $selectedTrack)
-  return record.record.fields.geo_shape
-}
+  const getShape = (res) => {
+    const record = res.data.find(el => el.record.id === $selectedTrack)
+    return record.record.fields.geo_shape
+  }
+
+  onMount (() => {
+    const params = new URLSearchParams(document.location.search)
+    $selectedTrack = params.get('id')
+  })
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
 
-{#await apiCall}
+{#await promiseFromServ}
 <p>Waiting…</p>
 {:then res}
   <Map>
