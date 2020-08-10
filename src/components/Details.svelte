@@ -1,4 +1,5 @@
 <script>
+  import { fly } from 'svelte/transition'
   import { selectedTrack } from './store.js'
 
   const backToList = () => {
@@ -7,7 +8,9 @@
   }
 </script>
 
-<div>
+<div
+  in:fly={ { x: -200, duration: 300, delay: 100} }
+  out:fly={ { x: -200, duration: 300} }>
   <button on:click={backToList}>X Retours liste des tracés</button>
   {$selectedTrack}
 </div>

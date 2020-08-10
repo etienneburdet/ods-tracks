@@ -1,4 +1,10 @@
-<div>
+<script>
+  import { fly } from 'svelte/transition'
+</script>
+
+<div
+  in:fly={ { x: 200, duration: 300, delay: 100} }
+  out:fly={ { x: 200, duration: 300} }>
   <slot></slot>
 </div>
 
