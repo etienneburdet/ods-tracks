@@ -1,32 +1,20 @@
 <script>
+  import difficlutyColors from './difficulty-colors.js'
+
   export let difficulty
-  let easy = true
-  let mid = false
-  let hard = false
 </script>
 
-<span class:easy class:mid class:hard>
+<span style="--diffcultyColor: {difficlutyColors[difficulty]}">
   {difficulty}
 </span>
 
 <style>
   span {
-    padding: 5px 8px;
+    padding:6px 8px 4px 8px;
     border-radius: 8px;
     font-size: 0.8rem;
-    line-height: 8px;
+    line-height: 13px;
     color: white;
-  }
-
-  .easy {
-    background: blue;
-  }
-
-  .mid {
-    background: red;
-  }
-
-  .hard {
-    background: black;
+    background: var(--diffcultyColor)
   }
 </style>
