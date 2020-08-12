@@ -1,11 +1,12 @@
 <script>
   import { getContext, onMount } from 'svelte'
+  import difficlutyColors from './difficulty-colors.js'
 
   const { mapbox, getMap } = getContext('mapbox')
   const map = getMap()
 
-  export let geoshape
-  let coordinates = geoshape.geometry.coordinates
+  export let fields
+  let coordinates = fields.geo_shape.geometry.coordinates
 
 
   onMount(() => {
@@ -23,7 +24,7 @@
   const addTrackLayer = () => {
     map.addSource('track', {
       'type': 'geojson',
-      'data': geoshape
+      'data': fields.geo_shape.geometry
     })
 
     map.addLayer({
@@ -35,7 +36,7 @@
         'line-cap': 'round'
       },
       'paint': {
-        'line-color': '#888',
+        'line-color': difficlutyColors[fields.difficulte],
         'line-width': 8
       }
     })

@@ -19,9 +19,9 @@
     $selectedTrack = event.state
   }
 
-  const getShape = (res) => {
+  const getTrackFields = (res) => {
     const record = res.data.find(el => el.record.id === $selectedTrack)
-    return record.record.fields.geo_shape
+    return record.record.fields
   }
 
   onMount (() => {
@@ -37,10 +37,10 @@
 {:then res}
   <Map>
     {#if $selectedTrack}
-      <Track geoshape={getShape(res)}/>
+      <Track fields={getTrackFields(res)}/>
     {:else}
       {#each res.data as record}
-        <Marker {...record.record.fields.geo_point_2d } id={record.record.id} />
+        <Marker {...record.record.fields.geo_point_2d} id={record.record.id} />
       {/each}
     {/if}
   </Map>
