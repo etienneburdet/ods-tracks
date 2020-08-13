@@ -1,6 +1,6 @@
 <script>
 import { getContext, onMount } from 'svelte'
-import { selectedTrack } from './store.js'
+import { trackId } from './store.js'
 
 const { mapbox, getMap, bounds } = getContext('mapbox')
 const map = getMap()
@@ -13,13 +13,10 @@ const marker = new mapbox.Marker()
   .setLngLat([lon, lat])
 
 marker.getElement()
-  .addEventListener('click', ev => {
-    history.pushState({ id: id }, '', `?id=${id}`)
-    $selectedTrack = history.state.id
-})
+  .addEventListener('click', () => { trackId.select(id) })
 
 bounds.extend([lon, lat])
-map.fitBounds(bounds, { padding: 100 })
+map.fitBounds(bounds, { padding: 100 })
 
 onMount(() => {
   marker.addTo(map)

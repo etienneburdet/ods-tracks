@@ -8,25 +8,25 @@
   import Track from './components/Track.svelte'
   import List from './components/List.svelte'
   import Details from './components/Details.svelte'
-  import { selectedTrack } from './components/store.js'
+  import { trackId } from './components/store.js'
 
   let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
   let promiseFromServ = loadDataFromNetworkFirst('tracks', recordsUrl)
   let trackShape
 
   const updateSelectedTrack = event => {
+    // trackId.select(history.state.id)
     console.log('pop')
-    $selectedTrack = event.state
   }
 
-  const getTrackFields = (res) => {
-    const record = res.data.find(el => el.record.id === $selectedTrack)
+  const getTrack = (res) => {
+    const record = res.data.find(el => el.record.id === $trackId)
     return record.record.fields
   }
 
   onMount (() => {
     const params = new URLSearchParams(document.location.search)
-    $selectedTrack = params.get('id')
+    trackId.select(params.get('id'))
   })
 </script>
 
@@ -36,20 +36,20 @@
 <p>Waiting…</p>
 {:then res}
   <Map>
-    {#if $selectedTrack}
-      <Track fields={getTrackFields(res)}/>
+    {#if $trackId}
+      <Track track={getTrack(res)}/>
     {:else}
       {#each res.data as record}
         <Marker {...record.record.fields.geo_point_2d} id={record.record.id} />
       {/each}
     {/if}
   </Map>
-  {#if $selectedTrack}
+  {#if $trackId}
     <Details />
   {:else}
     <List>
       {#each res.data as record}
-      <ListItem fields={record.record.fields} />
+      <ListItem track={record.record.fields} />
       {/each}
     </List>
   {/if}

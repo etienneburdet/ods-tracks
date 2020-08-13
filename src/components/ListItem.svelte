@@ -1,21 +1,22 @@
 <script>
   import DifficultyBadge from './DifficultyBadge.svelte'
   import { getThumbnailTag } from '../plugins/cloudinary.js'
-  export let fields
+  export let track
+  export let id
 
-  let thumbnailTag = getThumbnailTag(fields.image)
+  let thumbnailTag = getThumbnailTag(track.image)
 </script>
 
 <div class="track-item">
   {@html thumbnailTag}
   <div class="description">
-    <h2>{fields.name}</h2>
+    <h2>{track.name}</h2>
     <div class="details">
       <span>Zermatt · </span>
-      <span>{fields.deniv}m · </span>
-      <span>{fields.temps}h · </span>
-      <span>{fields.sport} · </span>
-      <DifficultyBadge difficulty={fields.difficulte}/>
+      <span>{track.deniv}m · </span>
+      <span>{track.temps}h · </span>
+      <span>{track.sport} · </span>
+      <DifficultyBadge difficulty={track.difficulte}/>
     </div>
   </div>
 </div>

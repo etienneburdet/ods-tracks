@@ -5,8 +5,8 @@
   const { mapbox, getMap } = getContext('mapbox')
   const map = getMap()
 
-  export let fields
-  let coordinates = fields.geo_shape.geometry.coordinates
+  export let track
+  let coordinates = track.geo_shape.geometry.coordinates
 
 
   onMount(() => {
@@ -24,7 +24,7 @@
   const addTrackLayer = () => {
     map.addSource('track', {
       'type': 'geojson',
-      'data': fields.geo_shape.geometry
+      'data': track.geo_shape.geometry
     })
 
     map.addLayer({
@@ -36,7 +36,7 @@
         'line-cap': 'round'
       },
       'paint': {
-        'line-color': difficlutyColors[fields.difficulte],
+        'line-color': difficlutyColors[track.difficulte],
         'line-width': 8
       }
     })
