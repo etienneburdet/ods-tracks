@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import getOdsUrl from './plugins/odsql.js'
   import loadDataFromNetworkFirst from './plugins/local-data.js'
-  import TrackItem from './components/TrackItem.svelte'
+  import ListItem from './components/ListItem.svelte'
   import Map from './components/Map.svelte'
   import Marker from './components/Marker.svelte'
   import Track from './components/Track.svelte'
@@ -49,7 +49,7 @@
   {:else}
     <List>
       {#each res.data as record}
-      <TrackItem fields={record.record.fields} />
+      <ListItem fields={record.record.fields} />
       {/each}
     </List>
   {/if}

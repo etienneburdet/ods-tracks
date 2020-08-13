@@ -2,6 +2,8 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { InjectManifest } = require('workbox-webpack-plugin')
 const { sass } = require('svelte-preprocess-sass')
 
@@ -18,7 +20,11 @@ module.exports = {
       swSrc: './src/sw.js',
       swDest: './sw.js',
       maximumFileSizeToCacheInBytes: 5000000
-    })
+    }),
+    new CopyPlugin([
+        { from: 'static', to: 'public' }
+      ]),
+    new FaviconsWebpackPlugin('static/icon-512.png')
   ],
   devtool: 'inline-source-map',
   output: {
