@@ -47,7 +47,7 @@
     {/if}
   </Map>
   {#if $trackId}
-    <Details />
+    <Details track={getTrack(res)}/>
   {:else}
     <List>
       {#each res.data as record}
