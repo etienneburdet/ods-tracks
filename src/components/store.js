@@ -8,7 +8,7 @@ const createTrackId = () => {
     subscribe,
     select: (id) => {
       history.pushState({ id: id }, '', `?id=${id}`)
-      set(history.state.id)
+      set(id)
     },
     reset: () => {
       history.pushState(null,'','/')

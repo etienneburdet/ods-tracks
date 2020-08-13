@@ -1,13 +1,14 @@
 <script>
   import DifficultyBadge from './DifficultyBadge.svelte'
   import { getThumbnailTag } from '../plugins/cloudinary.js'
+  import { trackId} from './store.js'
   export let track
   export let id
 
   let thumbnailTag = getThumbnailTag(track.image)
 </script>
 
-<div class="track-item">
+<a href="#" class="track-item" on:click={trackId.select(id)}>
   {@html thumbnailTag}
   <div class="description">
     <h2>{track.name}</h2>
@@ -19,7 +20,7 @@
       <DifficultyBadge difficulty={track.difficulte}/>
     </div>
   </div>
-</div>
+</a>
 
 <style lang="scss">
   .track-item {
@@ -29,6 +30,8 @@
     border-bottom: 1px solid grey;
     width: 100%;
     background: white;
+    text-decoration: none;
+    color: black;
   }
 
   img {

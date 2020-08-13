@@ -15,8 +15,9 @@
   let trackShape
 
   const updateSelectedTrack = event => {
-    // trackId.select(history.state.id)
-    console.log('pop')
+    history.state
+     ? trackId.select(history.state.id)
+     : trackId.reset()
   }
 
   const getTrack = (res) => {
@@ -26,7 +27,8 @@
 
   onMount (() => {
     const params = new URLSearchParams(document.location.search)
-    trackId.select(params.get('id'))
+    const id = params.get('id')
+    id && trackId.select(id)
   })
 </script>
 
@@ -49,7 +51,7 @@
   {:else}
     <List>
       {#each res.data as record}
-      <ListItem track={record.record.fields} />
+      <ListItem track={record.record.fields} id={record.record.id} />
       {/each}
     </List>
   {/if}
