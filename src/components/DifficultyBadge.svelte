@@ -11,7 +11,8 @@
 <style>
   span {
     padding:6px 8px 4px 8px;
-    border-radius: 8px;
+    margin: 8px 0;
+    border-radius: 3px;
     font-size: 0.8rem;
     line-height: 13px;
     color: white;

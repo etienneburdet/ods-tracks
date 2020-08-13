@@ -5,6 +5,11 @@
   export let track
   export let id
 
+  const sportIcons = {
+    Trail: "run-line.svg",
+    Splitboard: "snow-outline.svg"
+  }
+
   let thumbnailTag = getThumbnailTag(track.image)
 </script>
 
@@ -13,12 +18,24 @@
   <div class="description">
     <h2>{track.name}</h2>
     <div class="details">
-      <span>Zermatt · </span>
-      <span>{track.deniv}m · </span>
-      <span>{track.temps}h · </span>
-      <span>{track.sport} · </span>
-      <DifficultyBadge difficulty={track.difficulte}/>
+      <span>
+        <object type="image/svg+xml" data="locate-outline.svg"/>
+        {track.place}
+      </span>
+      <span>
+        <object type="image/svg+xml" data="trending-up-outline.svg"/>
+        {track.deniv}m
+      </span>
+      <span>
+        <object type="image/svg+xml" data="time-outline.svg"/>
+        {track.temps}h
+      </span>
+      <span>
+        <object type="image/svg+xml" data={sportIcons[track.sport]}/>
+        {track.sport}
+      </span>
     </div>
+    <DifficultyBadge difficulty={track.difficulte}/>
   </div>
 </a>
 
@@ -39,6 +56,13 @@
     height: 108px;
   }
 
+  object {
+    height: 1rem;
+    width: 1rem;
+    color: #565656;
+    vertical-align: text-bottom;
+  }
+
   .description {
    padding: 8px;
   }
@@ -46,12 +70,14 @@
 
   .details {
     font-size: 0.8rem;
+    line-height: 1rem;
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    color: darkgrey;
+    padding: 5px 0;
+    color: #565656;
     & > * {
       padding: 5px;
     }
