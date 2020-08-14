@@ -12,8 +12,8 @@ const fullWidthParams = {
   crop: 'fill'
 }
 const thumbnailParams = {
-  height: 108,
-  width: 108,
+  width: 144,
+  height: 144,
   crop: 'fill'
 }
 

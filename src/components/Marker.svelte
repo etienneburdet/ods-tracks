@@ -16,7 +16,7 @@ marker.getElement()
   .addEventListener('click', () => { trackId.select(id) })
 
 bounds.extend([lon, lat])
-map.fitBounds(bounds, { padding: 100 })
+map.fitBounds(bounds, { padding: { bottom: 150, top: 50, left: 20, right: 20 } })
 
 onMount(() => {
   marker.addTo(map)

@@ -32,7 +32,7 @@
   @import '~mapbox-gl/dist/mapbox-gl.css';
 
   div {
-    height: 66vh;
+    height: 75vh;
     width: 100vw;
     position: fixed;
   }

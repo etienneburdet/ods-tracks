@@ -28,7 +28,7 @@
 <style lang="scss">
   .track-item {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: flex-start;
     border-bottom: 1px solid grey;
     width: 100%;
@@ -39,7 +39,7 @@
 
   img {
     flex: 0 0 108px;
-    height: 108px;
+    height: 100%;
   }
 
   .description {
