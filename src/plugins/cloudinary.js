@@ -3,19 +3,22 @@ import { Cloudinary } from 'cloudinary-core'
 const cl = new Cloudinary({cloud_name: "dmd8hdd6e", secure: true});
 
 const getImageTag = transformParams => imgId => cl.imageTag(imgId, transformParams).toHtml()
+const getImageUrl = transformParams => imgId => cl.url(imgId, transformParams)
 
-const getThumbnailTag = getImageTag({
+const fullWidth = document.documentElement.clientWidth
+const fullWidthParams = {
+  width: fullWidth,
+  height: Math.round(fullWidth * 2 / 3),
+  crop: 'fill'
+}
+const thumbnailParams = {
   height: 108,
   width: 108,
   crop: 'fill'
-})
+}
 
-const fullWidth = window.innerWidth
+const getThumbnailTag = getImageTag(thumbnailParams)
+const getFullWidthTag = getImageTag(fullWidthParams)
+const getFullWidthUrl = getImageUrl(fullWidthParams)
 
-const getFullWidthTag = getImageTag({
-  width: fullWidth,
-  height: Math.round(fullWidth / 3),
-  crop: 'fill'
-})
-
-export { getThumbnailTag, getFullWidthTag }
+export { getThumbnailTag, getFullWidthTag, getFullWidthUrl }

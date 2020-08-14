@@ -10,7 +10,7 @@
   import Details from './components/Details.svelte'
   import { trackId } from './components/store.js'
 
-  let recordsUrl = getOdsUrl('eburdet')('etienne-tracks')()
+  let recordsUrl = getOdsUrl('eburdet')('gpx')()
   let promiseFromServ = loadDataFromNetworkFirst('tracks', recordsUrl)
   let trackShape
 

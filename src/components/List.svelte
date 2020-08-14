@@ -12,6 +12,6 @@
   div {
     position: relative;
     top: 66vh;
-    width: 99vw;
+    width: 100vw;
   }
 </style>

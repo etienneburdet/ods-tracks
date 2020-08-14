@@ -1,31 +1,37 @@
 <script>
   import { fly } from 'svelte/transition'
   import { trackId } from './store.js'
-  import { getFullWidthTag } from '../plugins/cloudinary.js'
+  import DetailsHeader from './DetailsHeader.svelte'
 
   export let track
 
-  console.log(track.image)
-  let fullWidtImgTag = getFullWidthTag(track.image)
+  let specs = {
+    place: track.place,
+    time: track.temps,
+    gain: track.deniv,
+    sport: track.sport,
+  }
 </script>
 
 <div
   in:fly={ { x: -200, duration: 300, delay: 100} }
   out:fly={ { x: -200, duration: 300} }>
   <button on:click={trackId.reset}>X Retours liste des tracés</button>
-
-  {@html fullWidtImgTag}
+  <a href={track.file.url}>.gpx</a>
+  <a href={track.url}>more on strava</a>
+  <DetailsHeader
+    {specs}
+    image={track.image}
+    title={track.name}
+    difficulty={track.difficulte} />
+  <p>{track.description}</p>
 </div>
 
 <style lang="scss">
   div {
     position: relative;
-    top: 66vh;
+    background: white;
+    top: 50vh;
     width: 100vw;
-  }
-
-  img {
-    width: 100vw;
-    height: 33vw;
   }
 </style>
