@@ -45,6 +45,8 @@
 
 <style lang="scss">
   div {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background: transparent;
     top: 50vh;
@@ -69,5 +71,9 @@
     align-items: center;
     text-decoration: none;
     color: black;
+  }
+
+  p {
+    padding: 13px;
   }
 </style>
