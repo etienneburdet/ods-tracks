@@ -5,7 +5,7 @@
 <style lang="scss">
   div {
     position: sticky;
-    top: 0;
+    top: 21px;
     align-self: center;
     margin-bottom: -13px;
     display: inline-flex;
