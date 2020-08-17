@@ -1,14 +1,24 @@
 <script>
   import { fly } from 'svelte/transition'
   import TopBar from './TopBar.svelte'
+  import Select from './Select.svelte'
+
+  let selecting = ''
+  const setSelectingCategory = category => ev => {
+    ev.preventDefault()
+    selecting = category
+  }
 </script>
 
 <div
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
-    <a href="#">
+    <a href="#" on:click={setSelectingCategory('sport')}>
       Sport
+      {#if (selecting === 'sport')}
+        <Select name="sport" />
+      {/if}
     </a>
     <a href="#">
       Difficulté
