@@ -7,11 +7,18 @@
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
-    <a href="">Sport</a>
-    <a href="">Difficulté</a>
-    <a href="">Durée</a>
-    <a href="">Dénivelé</a>
-    <a href="">Lieu</a>
+    <a href="#">
+      Sport
+    </a>
+    <a href="#">
+      Difficulté
+    </a>
+    <a href="#">
+      Durée
+    </a>
+    <a href="#">
+      Dénivelé
+    </a>
   </TopBar>
   <slot></slot>
 </div>

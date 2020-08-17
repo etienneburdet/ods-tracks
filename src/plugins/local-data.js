@@ -5,16 +5,16 @@ export default async (dataset, odsUrl) => {
   if (!('indexedDB' in window)) { return null }
   const db = await createIndexedDB(dataset)
   try {
-    console.log('Network request failed. Offline mode !')
-    const offlineData = await getLocalData(db, dataset)
-    return { data: offlineData, status: 'offline' }
-    // const networkData = await getServerData(odsUrl)
-    // await db.clear(dataset)
-    // const tx = db.transaction(dataset, 'readwrite')
-    // networkData.records.forEach(record => tx.store.add(record))
-    // await tx.done
-    // setLastUpdated(new Date())
-    // return { data: networkData.records, status: 'online' }
+    // console.log('Network request failed. Offline mode !')
+    // const offlineData = await getLocalData(db, dataset)
+    // return { data: offlineData, status: 'offline' }
+    const networkData = await getServerData(odsUrl)
+    await db.clear(dataset)
+    const tx = db.transaction(dataset, 'readwrite')
+    networkData.records.forEach(record => tx.store.add(record))
+    await tx.done
+    setLastUpdated(new Date())
+    return { data: networkData.records, status: 'online' }
   } catch (err) {
     console.log('Network request failed. Offline mode !')
     console.error(err)

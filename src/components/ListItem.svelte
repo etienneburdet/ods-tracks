@@ -37,11 +37,6 @@
     color: black;
   }
 
-  img {
-    flex: 0 0 108px;
-    height: 100%;
-  }
-
   .description {
    padding: 8px;
   }
