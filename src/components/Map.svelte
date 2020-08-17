@@ -17,7 +17,8 @@
   onMount(() => {
       map = new mapbox.Map({
       container,
-      style: 'mapbox://styles/mapbox/streets-v11'
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [45.406164,5.765444]
     })
   })
 </script>

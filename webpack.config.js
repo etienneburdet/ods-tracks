@@ -22,7 +22,7 @@ module.exports = {
       maximumFileSizeToCacheInBytes: 5000000
     }),
     new CopyPlugin([
-        { from: 'static', to: 'public' }
+        { from: 'static', to: 'static' }
       ]),
     new FaviconsWebpackPlugin('static/icon-512.png')
   ],

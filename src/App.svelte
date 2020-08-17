@@ -14,6 +14,12 @@
   let promiseFromServ = loadDataFromNetworkFirst('tracks', recordsUrl)
   let trackShape
 
+  onMount (() => {
+    const params = new URLSearchParams(document.location.search)
+    const id = params.get('id')
+    id && trackId.select(id)
+  })
+
   const updateSelectedTrack = event => {
     history.state
      ? trackId.select(history.state.id)
@@ -25,11 +31,6 @@
     return record.record.fields
   }
 
-  onMount (() => {
-    const params = new URLSearchParams(document.location.search)
-    const id = params.get('id')
-    id && trackId.select(id)
-  })
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
