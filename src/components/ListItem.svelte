@@ -28,7 +28,7 @@
 <style lang="scss">
   .track-item {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: flex-start;
     border-bottom: 1px solid grey;
     width: 100%;

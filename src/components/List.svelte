@@ -7,13 +7,13 @@
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
-    <a href="#" on:click={trackId.reset}>
+    <a href="#">
       Sport
     </a>
-    <a href={track.file.url}>
+    <a href="#">
       Difficulté
     </a>
-    <a href={track.url}>
+    <a href="#">
       Durée
     </a>
     <a href="#">
@@ -28,5 +28,20 @@
     position: relative;
     top: 66vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    border-left: 1px solid #cbd2db;
+    &:first-child {
+      border: none;
+    }
+    padding: 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
   }
 </style>

@@ -17,6 +17,7 @@
   onMount(() => {
       map = new mapbox.Map({
       container,
+      center: [45.767311, 4.834310],
       style: 'mapbox://styles/mapbox/streets-v11'
     })
   })
@@ -32,7 +33,7 @@
   @import '~mapbox-gl/dist/mapbox-gl.css';
 
   div {
-    height: 66vh;
+    height: 75vh;
     width: 100vw;
     position: fixed;
   }
