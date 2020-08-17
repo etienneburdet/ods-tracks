@@ -1,10 +1,19 @@
 <script>
-  import { fly } from 'svelte/transition'
+  import { fly, fade } from 'svelte/transition'
   import { trackId } from './store.js'
   import DetailsHeader from './DetailsHeader.svelte'
   import TopBar from './TopBar.svelte'
 
   export let track
+  let showCopyToast = false
+
+  const copyUrlToCB = async (ev) => {
+    ev.preventDefault()
+    const url = window.location.toString()
+    const clipboardRes = await navigator.clipboard.writeText(url)
+    showCopyToast = true
+    setTimeout(() => { showCopyToast = false }, 500)
+  }
 
   let specs = {
     place: track.place,
@@ -30,9 +39,12 @@
       <img src="link-outline.svg" alt="external link">
       Strava
     </a>
-    <a href="#">
+    <a href="#" on:click={copyUrlToCB}>
       <img src="share-social-outline.svg" alt="external link">
       Copier Url
+      {#if showCopyToast}
+        <span class="copy-toast" transition:fade>Copié</span>
+      {/if}
     </a>
   </TopBar>
   <DetailsHeader
@@ -51,6 +63,16 @@
     background: transparent;
     top: 50vh;
     width: 100vw;
+  }
+
+  .copy-toast {
+    padding: 8px 13px;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    z-index: 20;
+    position: absolute;
+    top: -34px;
   }
 
   img {
