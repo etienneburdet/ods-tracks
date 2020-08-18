@@ -18,3 +18,4 @@ const createTrackId = () => {
 }
 
 export const trackId = createTrackId()
+export const activeFilter = writable(0)

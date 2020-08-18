@@ -1,8 +1,5 @@
 <script>
-  // export let choices
-  // export let name
-  let split
-  let trail = false
+  export let choices
 
   const preventClose = (event) => {
     event.stopPropagation()
@@ -10,18 +7,13 @@
   }
 </script>
 
-<div>
-  <form action="#" on:click|stopPropagation>
+<form action="#" on:click|stopPropagation>
+  {#each Object.values(category) as choice}
     <label>
       <input type="checkbox" bind:checked={split}>
       {split}
     </label>
-    <label>
-      <input type="checkbox" bind:checked={trail}>
-      Trail
-    </label>
-  </form>
-</div>
+  {/each}
 
 <style lang="scss">
   form {

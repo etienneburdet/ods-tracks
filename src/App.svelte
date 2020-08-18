@@ -14,6 +14,12 @@ let recordsUrl = getOdsUrl('eburdet')('gpx')()
 let promiseFromServ = loadDataFromNetworkFirst('tracks', recordsUrl)
 let trackShape
 
+onMount (() => {
+  const params = new URLSearchParams(document.location.search)
+  const id = params.get('id')
+  id && trackId.select(id)
+})
+
 const updateSelectedTrack = event => {
   history.state
    ? trackId.select(history.state.id)
@@ -25,11 +31,20 @@ const getTrack = (res) => {
   return record.record.fields
 }
 
-onMount (() => {
-  const params = new URLSearchParams(document.location.search)
-  const id = params.get('id')
-  id && trackId.select(id)
-})
+const getFilters = (res) => {
+  const sports = getSports(res)
+  const difficulties = getDifficulties(res)
+  return { sports, difficulties }
+}
+const getSports = (res) => {
+  let sports = [...new Set(res.data.map(record => record.record.fields.sport))]
+  return sports
+}
+
+const getDifficulties = (res) => {
+  let difficulties = [...new Set(res.data.map(record => record.record.fields.difficulte))]
+  return difficulties
+}
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
@@ -50,7 +65,7 @@ onMount (() => {
   {#if $trackId}
     <Details track={getTrack(res)}/>
   {:else}
-    <List>
+    <List filters={getFilters(res)}>
       {#each res.data as record}
       <ListItem track={record.record.fields} id={record.record.id} />
       {/each}

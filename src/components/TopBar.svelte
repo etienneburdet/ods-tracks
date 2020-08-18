@@ -19,4 +19,17 @@
     border-radius: 5px;
     z-index: 10;
   }
+
+  div :global(button) {
+    border-left: 1px solid #cbd2db;
+    &:first-child {
+      border: none;
+    }
+    padding: 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+  }
 </style>
