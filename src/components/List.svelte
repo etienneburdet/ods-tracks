@@ -1,29 +1,33 @@
 <script>
-  import { fly } from 'svelte/transition'
-  import TopBar from './TopBar.svelte'
-  import Select from './Select.svelte'
+import { fly } from 'svelte/transition'
+import TopBar from './TopBar.svelte'
+import Select from './Select.svelte'
 
-  let selecting = ''
+let selecting = ''
 
-  const setSelectingCategory = category => ev => {
-    ev.preventDefault()
-    selecting = category
-  }
+const toggleFilter = category => ev => {
+  ev.preventDefault()
+  selecting
+   ? selecting = ''
+   : selecting = category
+}
 
-  const closeMenu = () => { selecting = ''}
+const closeMenu = () => {
+  selecting = ''
+}
 </script>
 
 <svelte:window on:click={closeMenu} />
 
-<div
+<div class="container"
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
-    <a href="#" on:click={setSelectingCategory('sport')}>
+    <a href="#" on:click|stopPropagation={toggleFilter('sport')}>
       Sport
     </a>
     {#if selecting === 'sport'}
-    <Select />
+      <Select />
     {/if }
     <a href="#">
       Difficulté
@@ -39,7 +43,7 @@
 </div>
 
 <style lang="scss">
-  div {
+  .container {
     position: relative;
     top: 66vh;
     width: 100vw;

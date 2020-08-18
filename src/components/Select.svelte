@@ -3,18 +3,25 @@
   // export let name
   let split
   let trail = false
+
+  const preventClose = (event) => {
+    event.stopPropagation()
+    console.log('blocked')
+  }
 </script>
 
-<form action="#" on:click={event.stopPropagation()}>
-  <label>
-    <input type="checkbox" bind:checked={split}>
-    {split}
-  </label>
-  <label>
-    <input type="checkbox" bind:checked={trail}>
-    Trail
-  </label>
-</form>
+<div>
+  <form action="#" on:click|stopPropagation>
+    <label>
+      <input type="checkbox" bind:checked={split}>
+      {split}
+    </label>
+    <label>
+      <input type="checkbox" bind:checked={trail}>
+      Trail
+    </label>
+  </form>
+</div>
 
 <style lang="scss">
   form {
