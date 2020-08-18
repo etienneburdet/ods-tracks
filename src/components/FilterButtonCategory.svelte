@@ -11,19 +11,20 @@ const toggleFilter = category => ev => {
 }
 </script>
 
-<button on:click|stopPropagation={toggleFilter('sport')}>
+<button on:click|stopPropagation={toggleFilter(category)}>
   {name}
+  {#if $activeFilter === category}
+    <form action="#" on:click|stopPropagation>
+      {#each Object.values(category) as choice}
+        <label>
+          <input type="checkbox">
+          {choice}
+        </label>
+      {/each}
+    </form>
+  {/if }
 </button>
-{#if $activeFilter === 'sport'}
-  <form action="#" on:click|stopPropagation>
-    {#each Object.values(category) as choice}
-      <label>
-        <input type="checkbox">
-        {choice}
-      </label>
-    {/each}
-  </form>
-{/if }
+
 
 <style lang="scss">
   form {
@@ -39,8 +40,7 @@ const toggleFilter = category => ev => {
 
   label {
     border-top: 1px solid #cbd2db;
-    width: 100%;
-    display: inline;
+    display: block;
     text-align: left;
     padding: 5px 8px;
     &:first-child {

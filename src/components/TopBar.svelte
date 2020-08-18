@@ -21,15 +21,18 @@
   }
 
   div :global(button) {
-    border-left: 1px solid #cbd2db;
-    &:first-child {
-      border: none;
-    }
-    padding: 3px 8px;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
+    padding: 3px 8px;
     color: black;
+    font-size: 13px;
+    border: none;
+    border-left: 1px solid #cbd2db;
+    background: white;
+    &:first-child {
+      border-left: none;
+    }
   }
 </style>
