@@ -4,11 +4,16 @@
   import Select from './Select.svelte'
 
   let selecting = ''
+
   const setSelectingCategory = category => ev => {
     ev.preventDefault()
     selecting = category
   }
+
+  const closeMenu = () => { selecting = ''}
 </script>
+
+<svelte:window on:click={closeMenu} />
 
 <div
   in:fly={ { x: 200, duration: 300, delay: 100} }
@@ -16,10 +21,10 @@
   <TopBar>
     <a href="#" on:click={setSelectingCategory('sport')}>
       Sport
-      {#if (selecting === 'sport')}
-        <Select name="sport" />
-      {/if}
     </a>
+    {#if selecting === 'sport'}
+    <Select />
+    {/if }
     <a href="#">
       Difficulté
     </a>
