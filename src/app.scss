@@ -11,3 +11,25 @@ h2 {
 p {
   font-size: 0.8rem;
 }
+
+.noUi-horizontal {
+  height: 5px;
+  .noUi-handle {
+    height: 13px;
+    width: 13px;
+    top: -5px;
+    right: -13px;
+  }
+}
+
+.noUi-base {
+  height: 5px;
+}
+
+.noUi-connects {
+  border: 1px solid #cbd2db;
+}
+
+.noUi-handle:before, .noUi-handle:after {
+  content: none;
+}

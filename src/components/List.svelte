@@ -2,6 +2,7 @@
 import { fly } from 'svelte/transition'
 import TopBar from './TopBar.svelte'
 import FilterButtonCategory from './FilterButtonCategory.svelte'
+import FilterButtonRange from './FilterButtonRange.svelte'
 import { activeFilterMenu } from './store.js'
 
 export let filters
@@ -16,9 +17,7 @@ const closeMenu = () => { $activeFilterMenu = '' }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
     <FilterButtonCategory name="Sport" category="sports" />
-    <button>
-      Durée
-    </button>
+    <FilterButtonRange name="Durée" category="timeRange" />
     <button>
       Dénivelé
     </button>
