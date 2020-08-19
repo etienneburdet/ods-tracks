@@ -1,17 +1,21 @@
 <script>
 import { slide } from 'svelte/transition'
-import { activeFilter } from './store.js'
+import { onMount } from 'svelte'
+import { activeFilterMenu, selectedFilters, filters } from './store.js'
 
 export let category
 export let name
+let checkedOptions = []
 
 let scroll, dropdown
 $: dropdown = scroll > 300
+$: $selectedFilters[category] = checkedOptions
+$: console.log($selectedFilters)
 
 const toggleFilter = category => ev => {
-  $activeFilter
-   ? $activeFilter = ''
-   : $activeFilter = category
+  $activeFilterMenu === category
+   ? $activeFilterMenu = ''
+   : $activeFilterMenu = category
 }
 </script>
 
@@ -19,11 +23,16 @@ const toggleFilter = category => ev => {
 
 <button on:click|stopPropagation={toggleFilter(category)}>
   {name}
-  {#if $activeFilter === category}
-    <form action="#" on:click|stopPropagation class:dropdown transition:slide>
-      {#each Object.values(category) as choice}
+  {#if $activeFilterMenu === category }
+    <form
+      on:click|stopPropagation
+      class:dropdown
+      transition:slide={{duration: 200}}>
+      {#each $filters[category] as choice}
         <label>
-          <input type="checkbox">
+          <input type="checkbox"
+            bind:group={checkedOptions}
+            value={choice}>
           {choice}
         </label>
       {/each}
@@ -48,8 +57,7 @@ const toggleFilter = category => ev => {
   }
 
   .dropdown {
-    bottom: unset;
-    top: -55px;
+    bottom: -122px;
   }
 
   label {

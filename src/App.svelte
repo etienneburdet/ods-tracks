@@ -11,7 +11,7 @@ import Track from './components/Track.svelte'
 import List from './components/List.svelte'
 import Details from './components/Details.svelte'
 
-import { trackId, track, tracks } from './components/store.js'
+import { displayedTrack, tracks, filters, selectedFilters } from './components/store.js'
 
 let recordsUrl = getOdsUrl('eburdet')('gpx')()
 let trackShape
@@ -20,7 +20,10 @@ onMount (async () => {
   $tracks = await getTracksFromServ()
   const params = new URLSearchParams(document.location.search)
   const id = params.get('id')
-  id && track.select(id)
+  if (id) {
+    const track = $tracks.filter(track => track.id === id)
+    displayedTrack.display(track)
+  }
 })
 
 const getTracksFromServ = async () => {
@@ -35,57 +38,30 @@ const getTracksFromServ = async () => {
 
 const updateSelectedTrack = event => {
   history.state
-   ? trackId.select(history.state.id)
-   : trackId.reset()
-}
-
-const getTrack = (res) => {
-  const record = res.data.find(el => el.record.id === $trackId)
-  return record.record.fields
-}
-
-const getFilters = (res) => {
-  const sports = getSports(res)
-  const difficulties = getDifficulties(res)
-  return { sports, difficulties }
-}
-const getSports = (res) => {
-  let sports = [...new Set(res.data.map(record => record.record.fields.sport))]
-  return sports
-}
-
-const getDifficulties = (res) => {
-  let difficulties = [...new Set(res.data.map(record => record.record.fields.difficulte))]
-  return difficulties
+   ? displayedTrack.display(history.state.id)
+   : displayedTrack.quit()
 }
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
 
-
-<!-- {#await promiseFromServ}
-<p>Waiting…</p>
-{:then res} -->
 {#if $tracks}
   <Map>
-    {#if $track}
-      <Track track={$track}/>
+    {#if $displayedTrack}
+      <Track track={$displayedTrack}/>
     {:else}
       {#each $tracks as track}
-        <Marker {...track.geo_point_2d} id={track.id} />
+        <Marker {track} />
       {/each}
     {/if}
   </Map>
-  {#if $track}
-    <Details track={$track}/>
+  {#if $displayedTrack}
+    <Details track={$displayedTrack}/>
   {:else}
-    <!-- <List filters={getFilters(res)}>
+    <List filters={$filters}>
       {#each $tracks as track}
-      <ListItem {track} id={track.id} />
+        <ListItem {track} id={track.id} />
       {/each}
-    </List> -->
+    </List>
   {/if}
 {/if}
-<!-- {:catch error}
-  {error}
-{/await} -->

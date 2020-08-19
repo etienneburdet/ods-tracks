@@ -2,11 +2,11 @@
 import { fly } from 'svelte/transition'
 import TopBar from './TopBar.svelte'
 import FilterButtonCategory from './FilterButtonCategory.svelte'
-import { activeFilter } from './store.js'
+import { activeFilterMenu } from './store.js'
 
 export let filters
 
-const closeMenu = () => { $activeFilter = '' }
+const closeMenu = () => { $activeFilterMenu = '' }
 </script>
 
 <svelte:window on:click={closeMenu} />
@@ -15,14 +15,14 @@ const closeMenu = () => { $activeFilter = '' }
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
-    <FilterButtonCategory name="Sport" category={filters.sports} />
+    <FilterButtonCategory name="Sport" category="sports" />
     <button>
       Durée
     </button>
     <button>
       Dénivelé
     </button>
-    <FilterButtonCategory name="Difficulté" category={filters.difficulties} />
+    <FilterButtonCategory name="Difficulté" category="difficulties" />
   </TopBar>
   <slot></slot>
 </div>

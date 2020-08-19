@@ -1,33 +1,32 @@
 <script>
-  import { fly, fade } from 'svelte/transition'
-  import { trackId } from './store.js'
-  import DetailsHeader from './DetailsHeader.svelte'
-  import TopBar from './TopBar.svelte'
+import { fly, fade } from 'svelte/transition'
+import { displayedTrack } from './store.js'
+import DetailsHeader from './DetailsHeader.svelte'
+import TopBar from './TopBar.svelte'
 
-  export let track
-  let showCopyToast = false
+export let track
+let showCopyToast = false
+let specs = {
+  place: track.place,
+  time: track.temps,
+  gain: track.deniv,
+  sport: track.sport
+}
 
-  const copyUrlToCB = async (ev) => {
-    ev.preventDefault()
-    const url = window.location.toString()
-    const clipboardRes = await navigator.clipboard.writeText(url)
-    showCopyToast = true
-    setTimeout(() => { showCopyToast = false }, 500)
-  }
-
-  let specs = {
-    place: track.place,
-    time: track.temps,
-    gain: track.deniv,
-    sport: track.sport,
-  }
+const copyUrlToCB = async (ev) => {
+  ev.preventDefault()
+  const url = window.location.toString()
+  const clipboardRes = await navigator.clipboard.writeText(url)
+  showCopyToast = true
+  setTimeout(() => { showCopyToast = false }, 500)
+}
 </script>
 
 <div
   in:fly={ { x: -200, duration: 300, delay: 100} }
   out:fly={ { x: -200, duration: 300} }>
   <TopBar>
-    <a href="#" on:click={trackId.reset}>
+    <a href="#" on:click={displayedTrack.quit}>
       <img src="arrow-back-outline.svg" alt="download">
       Liste
     </a>

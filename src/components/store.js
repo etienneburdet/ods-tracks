@@ -1,25 +1,41 @@
 /* global history */
-import { writable } from 'svelte/store'
+import { writable, derived, get } from 'svelte/store'
 import { loadDataFromNetworkFirst } from '../plugins/local-data.js'
 
-const createTrackId = () => {
+const createDisplayedTrack = () => {
   const { subscribe, set } = writable(0)
 
   return {
     subscribe,
-    select: (id) => {
-      history.pushState({ id: id }, '', `?id=${id}`)
-      set(id)
+    display: (track) => {
+      history.pushState({ id: track.id }, '', `?id=${track.id}`)
+      set(track)
     },
-    reset: () => {
+    quit: () => {
       history.pushState(null,'','/')
       set(null)
     }
   }
 }
 
-export const trackId = createTrackId()
+const getFilters = (tracks) => {
+  const sports = getSports(tracks)
+  const difficulties = getDifficulties(tracks)
+  return { sports, difficulties }
+}
 
-export const track = writable(0)
-export const tracks = writable(0)
-export const activeFilter = writable(0)
+const getSports = (tracks) => {
+  let sports = [...new Set(tracks.map(track => track.sport))]
+  return sports
+}
+
+const getDifficulties = (tracks) => {
+  let difficulties = [...new Set(tracks.map(track => track.difficulte))]
+  return difficulties
+}
+
+export const tracks = writable([])
+export const displayedTrack = createDisplayedTrack()
+export const activeFilterMenu = writable('')
+export const filters = derived(tracks, $tracks => getFilters($tracks))
+export const selectedFilters = writable({})
