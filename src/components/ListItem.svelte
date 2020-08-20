@@ -17,12 +17,31 @@ let specs = {
   sport: track.sport
 }
 
+const isInSports = (selectedFilters) => {
+  const isIncluded = selectedFilters.sports.includes(track.sport)
+  const isNull = selectedFilters.sports.length === 0
+  return isIncluded || isNull
+}
+
+const isInDifficulties = (selectedFilters) => {
+  const isIncluded = selectedFilters.difficulties.includes(track.sport)
+  const isNull = selectedFilters.difficulties.length === 0
+  return isIncluded || isNull
+}
+
+const isInElevationGains = (selectedFilters) => {
+  const isOverMin = track.deniv >= selectedFilters.elevationGains[0]
+  const isUnderMax = track.deniv <= selectedFilters.elevationGains[1]
+  const isNull = !selectedFilters.elevationGains[0]
+  console.log('deniv is null', isNull)
+  return (isOverMin && isUnderMax) || isNull
+}
+
 const isFiltered = (selectedFilters) => {
-  const isInSports = selectedFilters.sports.includes(track.sport) || selectedFilters.sports.length === 0
-  const isInDifficluties = selectedFilters.difficulties.includes(track.difficulte) || selectedFilters.difficulties.length === 0
-  return isInSports && isInDifficluties
+  return isInSports(selectedFilters) && isInDifficulties(selectedFilters) && isInElevationGains(selectedFilters)
 }
 </script>
+
 {#if isFiltered($selectedFilters)}
 <div class="track-item"
   on:click={displayedTrack.display(track)}
