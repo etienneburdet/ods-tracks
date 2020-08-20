@@ -37,3 +37,16 @@ p {
 .noUi-handle:before, .noUi-handle:after {
   content: none;
 }
+
+.noUi-marker {
+  transform: scale(0.5);
+  top: 5px;
+}
+
+.noUi-value-large {
+  font-size: 10px
+}
+
+.noUi-value-sub {
+  font-size: 8px;
+}

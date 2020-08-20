@@ -1,6 +1,6 @@
 <script>
 import { slide } from 'svelte/transition'
-import { onMount } from 'svelte'
+import { afterUpdate } from 'svelte'
 import noUiSlider from 'nouislider'
 import { activeFilterMenu, selectedFilters, filters } from './store.js'
 import NumericInput from './NumericInput.svelte'
@@ -11,8 +11,8 @@ let scroll, dropdown
 let slider
 
 
-onMount(() => {
-  noUiSlider.create(slider, {
+afterUpdate(() => {
+  slider && noUiSlider.create(slider, {
     start: [20, 80],
     connect: true,
     range: {
@@ -30,6 +30,7 @@ onMount(() => {
 $: dropdown = scroll > 300
 
 const toggleFilter = category => ev => {
+  console.log('toggle', category)
   $activeFilterMenu === category
    ? $activeFilterMenu = ''
    : $activeFilterMenu = category
@@ -40,6 +41,7 @@ const toggleFilter = category => ev => {
 
 <button on:click|stopPropagation={toggleFilter(category)}>
   {name}
+  {#if $activeFilterMenu === category }
     <form
       on:click|stopPropagation
       class:dropdown
@@ -51,6 +53,7 @@ const toggleFilter = category => ev => {
         </div>
         <div class="slider" bind:this={slider}></div>
     </form>
+    {/if}
 </button>
 
 
@@ -80,9 +83,10 @@ const toggleFilter = category => ev => {
     align-items: center;
     width: 100%;
     margin-bottom: 13px;
-    > * {
-      margin: 0 5px;
-    }
+  }
+
+  .inputs > :global(*) {
+    margin: 0 5px;
   }
 
   .dropdown {
