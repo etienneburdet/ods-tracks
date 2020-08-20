@@ -7,9 +7,8 @@ import RangeSlider from './RangeSlider.svelte'
 export let category
 export let name
 let scroll, dropdown
-let selectedLowerBound = 10
-let selectedUpperBound = 90
-
+let selectedLowerBound
+let selectedUpperBound
 
 $: dropdown = scroll > 300
 $: $selectedFilters[category] = [selectedLowerBound, selectedUpperBound]
@@ -35,9 +34,13 @@ const toggleFilter = category => ev => {
           -
           <NumericInput name={`${name} maximum`} bind:value={selectedUpperBound}/>
         </div>
-        <RangeSlider bind:low={selectedLowerBound} bind:up={selectedUpperBound}/>
+        <RangeSlider
+          min={$filters[category][0]}
+          max={$filters[category][1]}
+          bind:low={selectedLowerBound}
+          bind:up={selectedUpperBound}/>
     </form>
-    {/if}
+  {/if}
 </button>
 
 

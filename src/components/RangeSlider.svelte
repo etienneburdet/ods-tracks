@@ -2,22 +2,25 @@
 import noUiSlider from 'nouislider'
 import { onMount, afterUpdate } from 'svelte'
 
-export let low
-export let up
+export let low = 0
+export let up = 100
+export let min
+export let max
+
 let slider
 
 onMount(() => {
   noUiSlider.create(slider, {
-    start: [low, up],
+    start: [min, max],
     connect: true,
     range: {
-      min: 0,
-      max: 100
+      min: min,
+      max: max
     },
-    step: 10,
+    step: max / 10,
     pips: {
       mode: 'steps',
-      density: 10
+      density: max / 10
     }
   })
 
@@ -27,7 +30,7 @@ onMount(() => {
 $: slider && slider.noUiSlider.set([low, up])
 
 const setFilter = (event) => {
-  [low, up] = slider.noUiSlider.get()
+  [low, up] = slider.noUiSlider.get().map(val => Math.round(val))
 }
 </script>
 

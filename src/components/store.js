@@ -1,6 +1,5 @@
 /* global history */
 import { writable, derived, get } from 'svelte/store'
-import { loadDataFromNetworkFirst } from '../plugins/local-data.js'
 
 const createDisplayedTrack = () => {
   const { subscribe, set } = writable(0)
@@ -19,20 +18,29 @@ const createDisplayedTrack = () => {
 }
 
 const getFilters = (tracks) => {
-  const sports = getSports(tracks)
-  const difficulties = getDifficulties(tracks)
-  return { sports, difficulties }
+  const sports = getOptions('sport', tracks)
+  const difficulties = getOptions('difficulte', tracks)
+  // const times = getRange('temps', tracks)
+  const elevationGains = getRange('deniv', tracks)
+  return { sports, difficulties, elevationGains }
 }
 
-const getSports = (tracks) => {
-  let sports = [...new Set(tracks.map(track => track.sport))]
-  return sports
+const getOptions = (category, tracks) => {
+  const options = [...new Set(tracks.map(track => track[category]))]
+  return options
 }
 
-const getDifficulties = (tracks) => {
-  let difficulties = [...new Set(tracks.map(track => track.difficulte))]
-  return difficulties
+const getRange = (category, tracks) => {
+  if (tracks.length > 0) {
+    const values = tracks.map(track => track[category])
+    const min = Math.min(...values)
+    const max = Math.max(...values)
+    return [min, max]
+  } else {
+    return [0, 100]
+  }
 }
+
 
 export const tracks = writable([])
 export const displayedTrack = createDisplayedTrack()
