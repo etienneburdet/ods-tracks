@@ -1,36 +1,20 @@
 <script>
 import { slide } from 'svelte/transition'
-import { afterUpdate } from 'svelte'
-import noUiSlider from 'nouislider'
 import { activeFilterMenu, selectedFilters, filters } from './store.js'
 import NumericInput from './NumericInput.svelte'
+import RangeSlider from './RangeSlider.svelte'
 
 export let category
 export let name
 let scroll, dropdown
-let slider
+let selectedLowerBound = 10
+let selectedUpperBound = 90
 
-
-afterUpdate(() => {
-  slider && noUiSlider.create(slider, {
-    start: [20, 80],
-    connect: true,
-    range: {
-      min: 0,
-      max: 100
-    },
-    step: 10,
-    pips: {
-      mode: 'steps',
-      density: 10
-    }
-  })
-})
 
 $: dropdown = scroll > 300
+$: $selectedFilters[category] = [selectedLowerBound, selectedUpperBound]
 
 const toggleFilter = category => ev => {
-  console.log('toggle', category)
   $activeFilterMenu === category
    ? $activeFilterMenu = ''
    : $activeFilterMenu = category
@@ -47,11 +31,11 @@ const toggleFilter = category => ev => {
       class:dropdown
       transition:slide={{duration: 200}}>
         <div class="inputs">
-          <NumericInput name="Durée minimum" value="10"/>
+          <NumericInput name={`${name} minimum`} bind:value={selectedLowerBound}/>
           -
-          <NumericInput name="Durée maximum" value="60"/>
+          <NumericInput name={`${name} maximum`} bind:value={selectedUpperBound}/>
         </div>
-        <div class="slider" bind:this={slider}></div>
+        <RangeSlider bind:low={selectedLowerBound} bind:up={selectedUpperBound}/>
     </form>
     {/if}
 </button>
@@ -92,9 +76,4 @@ const toggleFilter = category => ev => {
   .dropdown {
     bottom: -122px;
   }
-
-  .slider {
-    width: 95%;
-  }
-
 </style>

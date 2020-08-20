@@ -6,7 +6,7 @@ let focused = false
 
 <label class:focused>
   Durée minimum :
-  <input type="number" value="20"
+  <input type="number" bind:value={value}
     on:focus={() => focused = true }
     on:blur={() => focused = false}>
 </label>
