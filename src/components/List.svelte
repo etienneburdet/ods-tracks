@@ -17,7 +17,9 @@ const closeMenu = () => { $activeFilterMenu = '' }
   out:fly={ { x: 200, duration: 300} }>
   <TopBar>
     <FilterButtonCategory name="Sport" category="sports" />
-    <!-- <FilterButtonRange name="Durée" category="times" /> -->
+    <button>
+      Durée
+    </button>
     <FilterButtonRange name="Dénivelé" category="elevationGains" />
     <FilterButtonCategory name="Difficulté" category="difficulties" />
   </TopBar>
