@@ -5,9 +5,6 @@ export default async (dataset, odsUrl) => {
   if (!('indexedDB' in window)) { return null }
   const db = await createIndexedDB(dataset)
   try {
-    // console.log('Network request failed. Offline mode !')
-    // const offlineData = await getLocalData(db, dataset)
-    // return { data: offlineData, status: 'offline' }
     const networkData = await getServerData(odsUrl)
     await db.clear(dataset)
     const tx = db.transaction(dataset, 'readwrite')

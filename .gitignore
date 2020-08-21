@@ -8,3 +8,5 @@ package-lock.json
 
 .now
 .DS_store
+
+.vercel

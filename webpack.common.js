@@ -8,7 +8,6 @@ const { InjectManifest } = require('workbox-webpack-plugin')
 const { sass } = require('svelte-preprocess-sass')
 
 module.exports = {
-  mode: 'development',
   entry: {
     app: './src/app.js'
   },
@@ -22,8 +21,8 @@ module.exports = {
       maximumFileSizeToCacheInBytes: 5000000
     }),
     new CopyPlugin([
-        { from: 'static' }
-      ]),
+      { from: 'static' }
+    ]),
     new FaviconsWebpackPlugin('static/icon-512.png')
   ],
   devtool: 'inline-source-map',
@@ -87,10 +86,5 @@ module.exports = {
         }
       }
     }
-  },
-  devServer: {
-    contentBase: [ path.join(__dirname, 'public'), path.join(__dirname, 'static')],
-    compress: true,
-    port: 9000
   }
 }
