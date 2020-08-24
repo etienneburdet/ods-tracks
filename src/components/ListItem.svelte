@@ -33,7 +33,6 @@ const isInElevationGains = (selectedFilters) => {
   const isOverMin = track.deniv >= selectedFilters.elevationGains[0]
   const isUnderMax = track.deniv <= selectedFilters.elevationGains[1]
   const isNull = !selectedFilters.elevationGains[0]
-  console.log('deniv is null', isNull)
   return (isOverMin && isUnderMax) || isNull
 }
 

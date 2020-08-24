@@ -1,5 +1,5 @@
 /* global history */
-import { writable, derived, get } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
 
 const createDisplayedTrack = () => {
   const { subscribe, set } = writable(0)

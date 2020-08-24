@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: 'src/index.ejs' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html.tmpl' }),
     new MiniCssExtractPlugin(),
     new InjectManifest({
       swSrc: './src/sw.js',
@@ -23,9 +23,34 @@ module.exports = {
     new CopyPlugin([
       { from: 'static' }
     ]),
-    new FaviconsWebpackPlugin('static/icon-512.png')
+    new FaviconsWebpackPlugin({
+      logo: './static/icon-512.png',
+      cache: true,
+      inject: true,
+      favicons: {
+        appShortName: 'Tracks PWA',
+        appName: 'Circuits pour mobile',
+        appDescription: 'Try installing me!',
+        developername: 'Etienne Burdet, Opendatasoft',
+        developerUrl: 'https://www.opendatasoft.com/',
+        display: 'standalone',
+        start_url: '/',
+        scope: '/',
+        background_color: '#3367D6',
+        theme_color: '#3367D6',
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          windows: true,
+          yandex: true
+        }
+      }
+    })
   ],
-  devtool: 'inline-source-map',
   output: {
     filename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, 'public')

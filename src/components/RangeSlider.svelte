@@ -1,6 +1,6 @@
 <script>
 import noUiSlider from 'nouislider'
-import { onMount, afterUpdate } from 'svelte'
+import { onMount } from 'svelte'
 
 export let low = 0
 export let up = 100

@@ -3,7 +3,6 @@
 
   const preventClose = (event) => {
     event.stopPropagation()
-    console.log('blocked')
   }
 </script>
 
