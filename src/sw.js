@@ -6,6 +6,6 @@ import { CacheFirst } from 'workbox-strategies'
 
 precacheAndRoute(self.__WB_MANIFEST)
 registerRoute(
-  new RegExp('.(png|svg|jpg|gif)$'),
+  new RegExp('.*(png|svg|jpg|gif|pbf)$'),
   new CacheFirst({ cacheName: 'img' })
 )
