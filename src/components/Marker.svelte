@@ -1,6 +1,6 @@
 <script>
 import { getContext, onMount } from 'svelte'
-import { displayedTrack } from './store.js'
+import { displayedTrack } from '../stores/displayed-track.js'
 
 const { mapbox, getMap, bounds } = getContext('mapbox')
 const map = getMap()

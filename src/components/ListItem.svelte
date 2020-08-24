@@ -1,9 +1,11 @@
 <script>
 import { slide } from 'svelte/transition'
 import { getThumbnailTag } from '../plugins/cloudinary.js'
-import { displayedTrack, selectedFilters } from './store.js'
+
 import DifficultyBadge from './DifficultyBadge.svelte'
 import TrackSpecs from './TrackSpecs.svelte'
+
+import { displayedTrack } from '../stores/displayed-track.js'
 
 export let track
 export let id
@@ -16,32 +18,8 @@ let specs = {
   gain: track.deniv,
   sport: track.sport
 }
-
-const isInSports = (selectedFilters) => {
-  const isIncluded = selectedFilters.sports.includes(track.sport)
-  const isNull = selectedFilters.sports.length === 0
-  return isIncluded || isNull
-}
-
-const isInDifficulties = (selectedFilters) => {
-  const isIncluded = selectedFilters.difficulties.includes(track.sport)
-  const isNull = selectedFilters.difficulties.length === 0
-  return isIncluded || isNull
-}
-
-const isInElevationGains = (selectedFilters) => {
-  const isOverMin = track.deniv >= selectedFilters.elevationGains[0]
-  const isUnderMax = track.deniv <= selectedFilters.elevationGains[1]
-  const isNull = !selectedFilters.elevationGains[0]
-  return (isOverMin && isUnderMax) || isNull
-}
-
-const isFiltered = (selectedFilters) => {
-  return isInSports(selectedFilters) && isInDifficulties(selectedFilters) && isInElevationGains(selectedFilters)
-}
 </script>
 
-{#if isFiltered($selectedFilters)}
 <div class="track-item"
   on:click={displayedTrack.display(track)}
   transition:slide={{duration: 200}}>
@@ -52,7 +30,6 @@ const isFiltered = (selectedFilters) => {
     <DifficultyBadge difficulty={track.difficulte} />
   </div>
 </div>
-{/if}
 
 <style lang="scss">
   .track-item {

@@ -1,7 +1,10 @@
 <script>
 import { slide } from 'svelte/transition'
 import { onMount } from 'svelte'
-import { activeFilterMenu, selectedFilters, filters } from './store.js'
+
+import { activeFilterMenu } from '../stores/active-filter-menu.js'
+import { selectedFilters } from '../stores/selected-filters.js'
+import { filters } from '../stores/filters.js'
 
 export let category
 export let name

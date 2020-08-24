@@ -11,7 +11,9 @@ import Track from './components/Track.svelte'
 import List from './components/List.svelte'
 import Details from './components/Details.svelte'
 
-import { displayedTrack, tracks, filters, selectedFilters } from './components/store.js'
+import { displayedTrack } from './stores/displayed-track.js'
+import { tracks } from './stores/tracks.js'
+import { filteredTracks } from './stores/filtered-tracks.js'
 
 let recordsUrl = getOdsUrl('eburdet')('gpx')()
 let trackShape
@@ -50,7 +52,7 @@ const updateSelectedTrack = event => {
     {#if $displayedTrack}
       <Track track={$displayedTrack}/>
     {:else}
-      {#each $tracks as track}
+      {#each $filteredTracks as track}
         <Marker {track} />
       {/each}
     {/if}
@@ -58,8 +60,8 @@ const updateSelectedTrack = event => {
   {#if $displayedTrack}
     <Details track={$displayedTrack}/>
   {:else}
-    <List filters={$filters}>
-      {#each $tracks as track}
+    <List>
+      {#each $filteredTracks as track (track.id)}
         <ListItem {track} id={track.id} />
       {/each}
     </List>

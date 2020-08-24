@@ -1,8 +1,12 @@
 <script>
 import { slide } from 'svelte/transition'
-import { activeFilterMenu, selectedFilters, filters } from './store.js'
+
 import NumericInput from './NumericInput.svelte'
 import RangeSlider from './RangeSlider.svelte'
+
+import { activeFilterMenu } from '../stores/active-filter-menu.js'
+import { selectedFilters, } from '../stores/selected-filters.js'
+import { filters } from '../stores/filters.js'
 
 export let category
 export let name

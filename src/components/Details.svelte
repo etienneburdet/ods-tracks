@@ -1,8 +1,10 @@
 <script>
 import { fly, fade } from 'svelte/transition'
-import { displayedTrack } from './store.js'
+
 import DetailsHeader from './DetailsHeader.svelte'
 import TopBar from './TopBar.svelte'
+
+import { displayedTrack } from '../stores/displayed-track.js'
 
 export let track
 let showCopyToast = false

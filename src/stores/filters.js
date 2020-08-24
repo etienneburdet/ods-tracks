@@ -1,21 +1,5 @@
-/* global history */
-import { writable, derived } from 'svelte/store'
-
-const createDisplayedTrack = () => {
-  const { subscribe, set } = writable(0)
-
-  return {
-    subscribe,
-    display: (track) => {
-      history.pushState({ id: track.id }, '', `?id=${track.id}`)
-      set(track)
-    },
-    quit: () => {
-      history.pushState(null,'','/')
-      set(null)
-    }
-  }
-}
+import { derived } from 'svelte/store'
+import { tracks } from './tracks.js'
 
 const getFilters = (tracks) => {
   const sports = getOptions('sport', tracks)
@@ -41,9 +25,4 @@ const getRange = (category, tracks) => {
   }
 }
 
-
-export const tracks = writable([])
-export const displayedTrack = createDisplayedTrack()
-export const activeFilterMenu = writable('')
 export const filters = derived(tracks, $tracks => getFilters($tracks))
-export const selectedFilters = writable({})

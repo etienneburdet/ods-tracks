@@ -1,11 +1,12 @@
 <script>
 import { fly } from 'svelte/transition'
+
 import TopBar from './TopBar.svelte'
 import FilterButtonCategory from './FilterButtonCategory.svelte'
 import FilterButtonRange from './FilterButtonRange.svelte'
-import { activeFilterMenu } from './store.js'
 
-export let filters
+import { filters } from '../stores/filters.js'
+import { activeFilterMenu } from '../stores/active-filter-menu.js'
 
 const closeMenu = () => { $activeFilterMenu = '' }
 </script>
