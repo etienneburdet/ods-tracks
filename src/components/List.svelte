@@ -1,13 +1,16 @@
 <script>
 import { fly } from 'svelte/transition'
+import { onMount } from 'svelte'
 
 import TopBar from './TopBar.svelte'
 import FilterButtonCategory from './FilterButtonCategory.svelte'
 import FilterButtonRange from './FilterButtonRange.svelte'
 
+import { tracks } from '../stores/tracks.js'
 import { filters } from '../stores/filters.js'
 import { activeFilterMenu } from '../stores/active-filter-menu.js'
 
+onMount(async () => await tracks.setList())
 const closeMenu = () => { $activeFilterMenu = '' }
 </script>
 

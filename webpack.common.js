@@ -18,36 +18,36 @@ module.exports = {
     new InjectManifest({
       swSrc: './src/sw.js',
       swDest: './sw.js',
-      maximumFileSizeToCacheInBytes: 5000000
+      maximumFileSizeToCacheInBytes: 5000000,
+      mode: 'production'
     }),
     new CopyPlugin([
       { from: 'static' }
     ]),
     new FaviconsWebpackPlugin({
-      logo: './static/icon-512.png'
-      // cache: true,
-      // favicons: {
-      //   appShortName: 'Tracks PWA',
-      //   appName: 'Circuits pour mobile',
-      //   appDescription: 'Try installing me!',
-      //   developername: 'Etienne Burdet Opendatasoft',
-      //   developerUrl: 'https://www.opendatasoft.com/',
-      //   display: 'standalone',
-      //   start_url: '/',
-      //   scope: '/',
-      //   background_color: '#3367D6',
-      //   theme_color: '#3367D6',
-      //   icons: {
-      //     android: true,
-      //     appleIcon: true,
-      //     appleStartup: true,
-      //     coast: true,
-      //     favicons: true,
-      //     firefox: true,
-      //     windows: true,
-      //     yandex: true
-      //   }
-      // }
+      logo: './static/icon-512.png',
+      favicons: {
+        appShortName: 'Tracks PWA',
+        appName: 'Circuits pour mobile',
+        appDescription: 'Try installing me!',
+        developername: 'Etienne Burdet Opendatasoft',
+        developerUrl: 'https://www.opendatasoft.com/',
+        display: 'standalone',
+        start_url: '/',
+        scope: '/',
+        background_color: '#3367D6',
+        theme_color: '#3367D6',
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          windows: true,
+          yandex: true
+        }
+      }
     })
   ],
   output: {

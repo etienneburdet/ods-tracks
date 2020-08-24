@@ -15,11 +15,10 @@ import { displayedTrack } from './stores/displayed-track.js'
 import { tracks } from './stores/tracks.js'
 import { filteredTracks } from './stores/filtered-tracks.js'
 
-let recordsUrl = getOdsUrl('eburdet')('gpx')()
+let recordsUrl = getOdsUrl('eburdet')('gpx')
 let trackShape
 
 onMount (async () => {
-  $tracks = await getTracksFromServ()
   const params = new URLSearchParams(document.location.search)
   const id = params.get('id')
   if (id) {
@@ -27,16 +26,6 @@ onMount (async () => {
     displayedTrack.display(track)
   }
 })
-
-const getTracksFromServ = async () => {
-  const tracks = []
-  const promiseFromServ = await loadDataFromNetworkFirst('tracks', recordsUrl)
-  promiseFromServ.data.forEach((record, index) => {
-    tracks[index] = { ...record.record.fields }
-    tracks[index].id = record.record.id
-  })
-  return tracks
-}
 
 const updateSelectedTrack = event => {
   history.state
@@ -47,7 +36,7 @@ const updateSelectedTrack = event => {
 
 <svelte:window on:popstate={updateSelectedTrack} />
 
-{#if $tracks}
+{#if $tracks !== []}
   <Map>
     {#if $displayedTrack}
       <Track track={$displayedTrack}/>
