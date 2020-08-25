@@ -15,12 +15,12 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: 'src/index.html.tmpl' }),
     new MiniCssExtractPlugin(),
-    new InjectManifest({
-      swSrc: './src/sw.js',
-      swDest: './sw.js',
-      maximumFileSizeToCacheInBytes: 5000000,
-      mode: 'production'
-    }),
+    // new InjectManifest({
+    //   swSrc: './src/sw.js',
+    //   swDest: './sw.js',
+    //   maximumFileSizeToCacheInBytes: 5000000,
+    //   mode: 'production'
+    // }),
     new CopyPlugin([
       { from: 'static' }
     ]),

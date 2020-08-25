@@ -27,14 +27,14 @@ onMount (async () => {
   }
 })
 
-const updateSelectedTrack = event => {
-  history.state
-   ? displayedTrack.display(history.state.id)
-   : displayedTrack.quit()
-}
+// const updateSelectedTrack = event => {
+//   history.state
+//    ? displayedTrack.display(history.state.id)
+//    : displayedTrack.quit()
+// }
 </script>
 
-<svelte:window on:popstate={updateSelectedTrack} />
+<!-- <svelte:window on:popstate={updateSelectedTrack} /> -->
 
 {#if $tracks !== []}
   <Map>
@@ -47,7 +47,7 @@ const updateSelectedTrack = event => {
     {/if}
   </Map>
   {#if $displayedTrack}
-    <Details track={$displayedTrack}/>
+    <Details track={$displayedTrack} on:click={displayedTrack.quit}/>
   {:else}
     <List>
       {#each $filteredTracks as track (track.id)}

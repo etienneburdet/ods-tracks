@@ -18,10 +18,12 @@ let specs = {
   gain: track.deniv,
   sport: track.sport
 }
+
+const showDetails = async () => await displayedTrack.display(track)
 </script>
 
 <div class="track-item"
-  on:click={displayedTrack.display(track)}
+  on:click={showDetails}
   transition:slide={{duration: 200}}>
   {@html thumbnailTag}
   <div class="description">

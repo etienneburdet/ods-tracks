@@ -4,9 +4,8 @@ import { fly, fade } from 'svelte/transition'
 import DetailsHeader from './DetailsHeader.svelte'
 import TopBar from './TopBar.svelte'
 
-import { displayedTrack } from '../stores/displayed-track.js'
-
 export let track
+
 let showCopyToast = false
 let specs = {
   place: track.place,
@@ -28,7 +27,7 @@ const copyUrlToCB = async (ev) => {
   in:fly={ { x: -200, duration: 300, delay: 100} }
   out:fly={ { x: -200, duration: 300} }>
   <TopBar>
-    <a href="#" on:click={displayedTrack.quit}>
+    <a href="#" on:click>
       <img src="arrow-back-outline.svg" alt="download">
       Liste
     </a>
