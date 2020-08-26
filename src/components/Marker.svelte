@@ -12,7 +12,7 @@ const marker = new mapbox.Marker()
   .setLngLat([lon, lat])
 
 marker.getElement()
-  .addEventListener('click', () => { displayedTrack.display(track) })
+  .addEventListener('click', () => { displayedTrack.display(track.name) })
 
 bounds.extend([lon, lat])
 map.fitBounds(bounds, { padding: { bottom: 150, top: 50, left: 20, right: 20 } })

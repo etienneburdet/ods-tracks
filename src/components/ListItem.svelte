@@ -19,7 +19,7 @@ let specs = {
   sport: track.sport
 }
 
-const showDetails = async () => await displayedTrack.display(track)
+const showDetails = async () => await displayedTrack.display(track.name)
 </script>
 
 <div class="track-item"

@@ -19,15 +19,13 @@ const listParams = {
 }
 
 const fetchList = async () => {
-  const tracks = []
-  const promiseFromServ = await loadDataFromNetworkFirst(
-    'tracks',
-    getRecordsUrl(listParams)
-  )
-  promiseFromServ.data.forEach((record, index) => {
-    tracks[index] = { ...record.record.fields }
-    tracks[index].id = record.record.id
-  })
+  const promiseFromServ = await fetch(getRecordsUrl(listParams))
+  const data = await promiseFromServ.json()
+  const tracks = data.records.reduce((acc, record) => {
+    const track = { ...record.record.fields }
+    track.id = record.record.id
+    return [...acc, track]
+  }, [])
   return tracks
 }
 

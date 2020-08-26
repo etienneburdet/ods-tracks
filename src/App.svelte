@@ -20,21 +20,18 @@ let trackShape
 
 onMount (async () => {
   const params = new URLSearchParams(document.location.search)
-  const id = params.get('id')
-  if (id) {
-    const track = $tracks.filter(track => track.id === id)
-    displayedTrack.display(track)
-  }
+  const name = params.get('name')
+  name && displayedTrack.display(name)
 })
 
-// const updateSelectedTrack = event => {
-//   history.state
-//    ? displayedTrack.display(history.state.id)
-//    : displayedTrack.quit()
-// }
+const updateSelectedTrack = event => {
+  history.state
+   ? displayedTrack.display(history.state.name)
+   : displayedTrack.quit()
+}
 </script>
 
-<!-- <svelte:window on:popstate={updateSelectedTrack} /> -->
+<svelte:window on:popstate={updateSelectedTrack} />
 
 {#if $tracks !== []}
   <Map>

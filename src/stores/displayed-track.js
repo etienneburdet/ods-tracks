@@ -10,9 +10,9 @@ const createDisplayedTrack = () => {
 
   return {
     subscribe,
-    async display (track) {
-      history.pushState({ name: track.name }, '', `?name=${track.name}`)
-      set(await fetchDetails(track))
+    async display (name) {
+      history.pushState({ name: name }, '', `?name=${name}`)
+      set(await fetchDetails(name))
     },
     quit () {
       history.pushState(null,'','/')
@@ -21,12 +21,10 @@ const createDisplayedTrack = () => {
   }
 }
 
-const fetchDetails = async (track) => {
-  const promiseFromServ = await loadDataFromNetworkFirst(
-    'tracks',
-    getRecordsUrl({ where: `name="${track.name}"` })
-  )
-  return promiseFromServ.data[0].record.fields
+const fetchDetails = async (name) => {
+  const promiseFromServ = await fetch(getRecordsUrl({ where: `name="${name}"` }))
+  const data = await promiseFromServ.json()
+  return data.records[0].record.fields
 }
 
 export const displayedTrack = createDisplayedTrack()
