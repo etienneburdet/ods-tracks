@@ -8,7 +8,7 @@ const initTracks = () => {
 
   return {
     subscribe,
-    async setList () { set(await fetchList()) }
+    async setList () { set(await fetchList()) },
   }
 }
 

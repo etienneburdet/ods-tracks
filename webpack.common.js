@@ -29,7 +29,7 @@ module.exports = {
       favicons: {
         appShortName: 'Tracks PWA',
         appName: 'Circuits pour mobile',
-        appDescription: 'Try installing me!',
+        // appDescription: 'Try installing me!',
         developername: 'Etienne Burdet Opendatasoft',
         developerUrl: 'https://www.opendatasoft.com/',
         display: 'standalone',

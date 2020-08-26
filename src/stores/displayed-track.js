@@ -14,6 +14,7 @@ const createDisplayedTrack = () => {
       history.pushState({ name: name }, '', `?name=${name}`)
       set(await fetchDetails(name))
     },
+    async prefetch (name) { await fetchDetails(name)},
     quit () {
       history.pushState(null,'','/')
       set(null)

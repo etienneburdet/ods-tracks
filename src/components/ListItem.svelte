@@ -20,10 +20,13 @@ let specs = {
 }
 
 const showDetails = async () => await displayedTrack.display(track.name)
+const prefetchDetails = async () => await displayedTrack.prefetch(track.name)
 </script>
 
 <div class="track-item"
   on:click={showDetails}
+  on:mouseenter={prefetchDetails}
+  on:touchstart={prefetchDetails}
   transition:slide={{duration: 200}}>
   {@html thumbnailTag}
   <div class="description">

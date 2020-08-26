@@ -6,7 +6,7 @@ import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies'
 
 precacheAndRoute(self.__WB_MANIFEST)
 registerRoute(
-  new RegExp('.*(png|svg|jpg|gif|pbf)$'),
+  new RegExp('.*(png|svg|jpg|gif)$'),
   new CacheFirst({ cacheName: 'img' })
 )
 registerRoute(
