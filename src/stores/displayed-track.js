@@ -11,7 +11,7 @@ const createDisplayedTrack = () => {
   return {
     subscribe,
     async display (track) {
-      history.pushState({ id: track.id }, '', `?id=${track.id}`)
+      history.pushState({ name: track.name }, '', `?name=${track.name}`)
       set(await fetchDetails(track))
     },
     quit () {
