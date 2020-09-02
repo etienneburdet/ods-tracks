@@ -1,7 +1,7 @@
 <script>
 import { onMount } from 'svelte'
 
-import getOdsUrl from './plugins/odsql.js'
+import { getRecordsUrl } from './plugins/odsql.js'
 import loadDataFromNetworkFirst from './plugins/local-data.js'
 
 import ListItem from './components/ListItem.svelte'
@@ -15,7 +15,7 @@ import { displayedTrack } from './stores/displayed-track.js'
 import { tracks } from './stores/tracks.js'
 import { filteredTracks } from './stores/filtered-tracks.js'
 
-let recordsUrl = getOdsUrl('eburdet')('gpx')
+let recordsUrl = getRecordsUrl('eburdet')('gpx')
 let trackShape
 
 onMount (async () => {
@@ -26,8 +26,8 @@ onMount (async () => {
 
 const updateSelectedTrack = event => {
   history.state
-   ? displayedTrack.display(history.state.name)
-   : displayedTrack.quit()
+    ? displayedTrack.display(history.state.name)
+    : displayedTrack.quit()
 }
 </script>
 

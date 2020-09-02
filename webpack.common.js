@@ -6,6 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { InjectManifest } = require('workbox-webpack-plugin')
 const { sass } = require('svelte-preprocess-sass')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -48,7 +49,8 @@ module.exports = {
           yandex: true
         }
       }
-    })
+    }),
+    new PreloadWebpackPlugin()
   ],
   output: {
     filename: '[name].[contenthash].bundle.js',

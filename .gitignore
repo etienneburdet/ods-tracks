@@ -2,6 +2,7 @@
 /node_modules
 /medias
 /gpx
+/csv
 yarn.lock
 yarn-error.log
 package-lock.json
