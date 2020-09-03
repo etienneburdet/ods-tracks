@@ -4,7 +4,6 @@ import { slide } from 'svelte/transition'
 import NumericInput from './NumericInput.svelte'
 import RangeSlider from './RangeSlider.svelte'
 
-import { activeFilterMenu } from '../stores/active-filter-menu.js'
 import { selectedFilters, } from '../stores/selected-filters.js'
 import { filters } from '../stores/filters.js'
 
@@ -17,12 +16,12 @@ let selectedUpperBound
 $: dropdown = scroll > 300
 $: $selectedFilters[category] = [selectedLowerBound, selectedUpperBound]
 
-const toggleFilter = category => ev => {
-  $activeFilterMenu === category
-   ? $activeFilterMenu = ''
-   : $activeFilterMenu = category
-}
-</script>
+// const toggleFilter = category => ev => {
+//   $activeFilterMenu === category
+//    ? $activeFilterMenu = ''
+//    : $activeFilterMenu = category
+// }
+// </script>
 
 <svelte:window bind:scrollY={scroll} />
 

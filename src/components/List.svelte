@@ -8,25 +8,16 @@ import FilterButtonRange from './FilterButtonRange.svelte'
 
 import { tracks } from '../stores/tracks.js'
 import { filters } from '../stores/filters.js'
-import { activeFilterMenu } from '../stores/active-filter-menu.js'
 
 onMount(async () => await tracks.setList())
-const closeMenu = () => { $activeFilterMenu = '' }
+// const closeMenu = () => { $activeFilterMenu = '' }
 </script>
 
-<svelte:window on:click={closeMenu} />
+<!-- <svelte:window on:click={closeMenu} /> -->
 
 <div
   in:fly={ { x: 200, duration: 300, delay: 100} }
   out:fly={ { x: 200, duration: 300} }>
-  <TopBar>
-    <FilterButtonCategory name="Sport" category="sports" />
-    <button>
-      Durée
-    </button>
-    <FilterButtonRange name="Dénivelé" category="elevationGains" />
-    <FilterButtonCategory name="Difficulté" category="difficulties" />
-  </TopBar>
   <slot></slot>
 </div>
 

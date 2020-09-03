@@ -17,12 +17,13 @@ module.exports = {
     {
       files: ['**/*.svelte'],
       processor: 'svelte3/svelte3'
-    },
+    }
   ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module'
   },
   rules: {
+    'import/first': 'off'
   }
 }

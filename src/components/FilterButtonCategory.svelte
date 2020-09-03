@@ -2,7 +2,6 @@
 import { slide } from 'svelte/transition'
 import { onMount } from 'svelte'
 
-import { activeFilterMenu } from '../stores/active-filter-menu.js'
 import { selectedFilters } from '../stores/selected-filters.js'
 import { filters } from '../stores/filters.js'
 
@@ -14,16 +13,11 @@ let scroll, dropdown
 $: dropdown = scroll > 300
 $: $selectedFilters[category] = checkedOptions
 
-const toggleFilter = category => ev => {
-  $activeFilterMenu === category
-   ? $activeFilterMenu = ''
-   : $activeFilterMenu = category
-}
 </script>
 
 <svelte:window bind:scrollY={scroll} />
 
-<button on:click|stopPropagation={toggleFilter(category)}>
+<!-- <button on:click|stopPropagation={toggleFilter(category)}>
   {name}
   {#if $activeFilterMenu === category }
     <form
@@ -40,7 +34,7 @@ const toggleFilter = category => ev => {
       {/each}
     </form>
   {/if }
-</button>
+</button> -->
 
 
 <style lang="scss">

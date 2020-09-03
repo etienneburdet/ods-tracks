@@ -2,7 +2,6 @@
 import { onMount } from 'svelte'
 
 import { getRecordsUrl } from './plugins/odsql.js'
-import loadDataFromNetworkFirst from './plugins/local-data.js'
 
 import ListItem from './components/ListItem.svelte'
 import Map from './components/Map.svelte'
@@ -10,6 +9,7 @@ import Marker from './components/Marker.svelte'
 import Track from './components/Track.svelte'
 import List from './components/List.svelte'
 import Details from './components/Details.svelte'
+import FilterPill from './components/FilterPill.svelte'
 
 import { displayedTrack } from './stores/displayed-track.js'
 import { tracks } from './stores/tracks.js'
@@ -46,6 +46,7 @@ const updateSelectedTrack = event => {
   {#if $displayedTrack}
     <Details track={$displayedTrack} on:click={displayedTrack.quit}/>
   {:else}
+    <FilterPill />
     <List>
       {#each $filteredTracks as track (track.id)}
         <ListItem {track} id={track.id} />
