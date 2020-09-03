@@ -27,7 +27,6 @@ $: $selectedFilters[category] = [selectedLowerBound, selectedUpperBound]
 
 <button on:click|stopPropagation={toggleFilter(category)}>
   {name}
-  {#if $activeFilterMenu === category }
     <form
       on:click|stopPropagation
       class:dropdown
@@ -43,7 +42,6 @@ $: $selectedFilters[category] = [selectedLowerBound, selectedUpperBound]
           bind:low={selectedLowerBound}
           bind:up={selectedUpperBound}/>
     </form>
-  {/if}
 </button>
 
 

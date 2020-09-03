@@ -17,9 +17,8 @@ $: $selectedFilters[category] = checkedOptions
 
 <svelte:window bind:scrollY={scroll} />
 
-<!-- <button on:click|stopPropagation={toggleFilter(category)}>
+<button on:click|stopPropagation={toggleFilter(category)}>
   {name}
-  {#if $activeFilterMenu === category }
     <form
       on:click|stopPropagation
       class:dropdown
@@ -33,8 +32,7 @@ $: $selectedFilters[category] = checkedOptions
         </label>
       {/each}
     </form>
-  {/if }
-</button> -->
+</button>
 
 
 <style lang="scss">
