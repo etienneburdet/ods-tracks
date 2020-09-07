@@ -5,7 +5,7 @@ let focused = false
 </script>
 
 <label class:focused>
-  Durée minimum :
+  {name} minimum :
   <input type="number" bind:value={value}
     on:focus={() => focused = true }
     on:blur={() => focused = false}>
@@ -13,23 +13,24 @@ let focused = false
 
 <style lang="scss">
   label {
-   border:1px solid #cbd2db;
-   color:#cbd2db;
-   border-radius:8px;
-   padding:8px;
-   white-space: nowrap;
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border:1px solid #cbd2db;
+    border-radius:8px;
+    width: 33%;
+    padding:8px;
+    white-space: nowrap;
+    font-size: 13px;
+    color:#cbd2db;
   }
 
   input {
-    width: 34px;
     color: black;
     border: none;
     appearance: textfield;
-    font-size: 13px;
+    font-size: 16px;
+    width: 100%;
     &:focus {
       outline: none;
     }

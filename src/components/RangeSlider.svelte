@@ -38,6 +38,7 @@ const setFilter = (event) => {
 
 <style>
 .slider {
-  width: 95%;
+  width: 90%;
+  margin: 0 auto;
 }
 </style>

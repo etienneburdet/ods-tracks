@@ -3,21 +3,16 @@ import { fly } from 'svelte/transition'
 import { onMount } from 'svelte'
 
 import TopBar from './TopBar.svelte'
-import FilterButtonCategory from './FilterButtonCategory.svelte'
-import FilterButtonRange from './FilterButtonRange.svelte'
 
 import { tracks } from '../stores/tracks.js'
 import { filters } from '../stores/filters.js'
 
 onMount(async () => await tracks.setList())
-// const closeMenu = () => { $activeFilterMenu = '' }
 </script>
 
-<!-- <svelte:window on:click={closeMenu} /> -->
-
 <div
-  in:fly={ { x: 200, duration: 300, delay: 100} }
-  out:fly={ { x: 200, duration: 300} }>
+  in:fly={{ x: 200, duration: 300, delay: 100 }}
+  out:fly={{ x: 200, duration: 300 }}>
   <slot></slot>
 </div>
 

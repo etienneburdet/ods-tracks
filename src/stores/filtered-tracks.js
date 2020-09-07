@@ -4,20 +4,18 @@ import { selectedFilters } from './selected-filters.js'
 
 const isInSports = (track, selectedFilters) => {
   const isIncluded = selectedFilters.sports.includes(track.sport)
-  const isNull = selectedFilters.sports.length === 0
-  return isIncluded || isNull
+  return isIncluded
 }
 
 const isInDifficulties = (track, selectedFilters) => {
   const isIncluded = selectedFilters.difficulties.includes(track.sport)
-  const isNull = selectedFilters.difficulties.length === 0
-  return isIncluded || isNull
+  return isIncluded
 }
 
 const isInElevationGains = (track, selectedFilters) => {
-  const isOverMin = track.deniv >= selectedFilters.elevationGains[0]
-  const isUnderMax = track.deniv <= selectedFilters.elevationGains[1]
-  const isNull = !selectedFilters.elevationGains[0]
+  const isOverMin = track.deniv >= selectedFilters.gains[0]
+  const isUnderMax = track.deniv <= selectedFilters.gains[1]
+  const isNull = !selectedFilters.gains[0]
   return (isOverMin && isUnderMax) || isNull
 }
 

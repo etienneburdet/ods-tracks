@@ -5,8 +5,8 @@ const getFilters = (tracks) => {
   const sports = getOptions('sport', tracks)
   const difficulties = getOptions('difficulte', tracks)
   // const times = getRange('temps', tracks)
-  const elevationGains = getRange('deniv', tracks)
-  return { sports, difficulties, elevationGains }
+  const gains = getRange('deniv', tracks)
+  return { sports, difficulties, gains }
 }
 
 const getOptions = (category, tracks) => {

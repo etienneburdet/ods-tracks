@@ -1,5 +1,5 @@
 
-<button>
+<button on:click>
   <img src="filter-outline.svg"/>
   Filters
 </button>
@@ -22,5 +22,6 @@
     background: white;
     padding: 5px 8px;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
+    z-index: 10;
   }
 </style>
