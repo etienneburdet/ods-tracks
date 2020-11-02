@@ -8,7 +8,6 @@ import TrackSpecs from './TrackSpecs.svelte'
 import { displayedTrack } from '../stores/displayed-track.js'
 
 export let track
-export let id
 
 let thumbnailTag = getThumbnailTag(track.image)
 

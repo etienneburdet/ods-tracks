@@ -1,13 +1,5 @@
 <script>
 import { fly } from 'svelte/transition'
-import { onMount } from 'svelte'
-
-import TopBar from './TopBar.svelte'
-
-import { tracks } from '../stores/tracks.js'
-import { filters } from '../stores/filters.js'
-
-onMount(async () => await tracks.setList())
 </script>
 
 <div

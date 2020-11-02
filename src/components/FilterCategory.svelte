@@ -1,12 +1,12 @@
 <script>
+import { onMount } from 'svelte/store'
 import { selectedFilters } from '../stores/selected-filters.js'
 import { filters } from '../stores/filters.js'
 
 export let category
 export let name
-let checkedOptions
 
-$: $selectedFilters[category] = checkedOptions
+let checkedOptions
 </script>
 
 <div>
@@ -16,7 +16,7 @@ $: $selectedFilters[category] = checkedOptions
       <input type="checkbox"
         bind:group={checkedOptions}
         value={choice}
-        checked>
+      >
       {choice}
     </label>
   {/each}

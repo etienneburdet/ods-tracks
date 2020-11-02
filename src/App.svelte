@@ -17,12 +17,17 @@ import FilterRange from './components/FilterRange.svelte'
 import { displayedTrack } from './stores/displayed-track.js'
 import { tracks } from './stores/tracks.js'
 import { filteredTracks } from './stores/filtered-tracks.js'
+import { filters } from './stores/filters.js'
+import { selectedFilters } from './stores/selected-filters.js'
 import { filtering } from './stores/filtering.js'
 
 let recordsUrl = getRecordsUrl('eburdet')('gpx')
 let trackShape
 
 onMount (async () => {
+  await tracks.setList()
+  selectedFilters.initialize($filters)
+
   const params = new URLSearchParams(document.location.search)
   const name = params.get('name')
   name && displayedTrack.display(name)
@@ -36,6 +41,7 @@ const updateSelectedTrack = event => {
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
+
 
 {#if $tracks !== []}
   <Map>

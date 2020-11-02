@@ -9,19 +9,19 @@
 
 <div style="--invert: invert({invert})">
   <span>
-    <img src="locate-outline.svg"/>
+    <img src="locate-outline.svg" alt="locate icon"/>
     {place}
   </span>
   <span>
-    <img src="trending-up-outline.svg"/>
+    <img src="trending-up-outline.svg" alt="uphill icon"/>
     {gain}m
   </span>
   <span>
-    <img src="time-outline.svg"/>
+    <img src="time-outline.svg" alt="time icon"/>
     {time}h
   </span>
   <span>
-    <img src={sportIcons[sport]}/>
+    <img src={sportIcons[sport]} alt="sport icon"/>
     {sport}
   </span>
 </div>

@@ -8,7 +8,7 @@ const isInSports = (track, selectedFilters) => {
 }
 
 const isInDifficulties = (track, selectedFilters) => {
-  const isIncluded = selectedFilters.difficulties.includes(track.sport)
+  const isIncluded = selectedFilters.difficulties.includes(track.difficulte)
   return isIncluded
 }
 

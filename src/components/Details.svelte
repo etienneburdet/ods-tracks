@@ -27,20 +27,20 @@ const copyUrlToCB = async (ev) => {
   in:fly={ { x: -200, duration: 300, delay: 100} }
   out:fly={ { x: -200, duration: 300} }>
   <TopBar>
-    <a href="#" on:click>
-      <img src="arrow-back-outline.svg" alt="download">
+    <a href="#back" on:click>
+      <img src="arrow-back-outline.svg" alt="back-logo">
       Liste
     </a>
     <a href={track.file.url}>
-      <img src="download-outline.svg" alt="download">
+      <img src="download-outline.svg" alt="download-logo">
       .gpx
     </a>
     <a href={track.url}>
-      <img src="link-outline.svg" alt="external link">
+      <img src="link-outline.svg" alt="external-link-logo">
       Strava
     </a>
-    <a href="#" on:click={copyUrlToCB}>
-      <img src="share-social-outline.svg" alt="external link">
+    <a href="#copy" on:click={copyUrlToCB}>
+      <img src="share-social-outline.svg" alt="copy to clipboard logo">
       Copier Url
       {#if showCopyToast}
         <span class="copy-toast" transition:fade>Copié</span>

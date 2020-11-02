@@ -1,7 +1,16 @@
-import { writable } from 'svelte/store'
+import { writable, get } from 'svelte/store'
 
-export const selectedFilters = writable({
-  sports: [],
-  gains: [],
-  difficulties: []
-})
+const initSelectedFilters = () => {
+  const { subscribe, set } = writable({
+    sports: [],
+    difficulties: [],
+    gains: []
+  })
+
+  return {
+    subscribe,
+    initialize (filters) { set(filters) }
+  }
+}
+
+export const selectedFilters = initSelectedFilters()

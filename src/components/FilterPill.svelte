@@ -1,6 +1,6 @@
 
 <button on:click>
-  <img src="filter-outline.svg"/>
+  <img src="filter-outline.svg" alt="filters button logo"/>
   Filters
 </button>
 
