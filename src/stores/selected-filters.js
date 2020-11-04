@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store'
+import { writable } from 'svelte/store'
 
 const initSelectedFilters = () => {
   const { subscribe, set } = writable({
@@ -9,7 +9,10 @@ const initSelectedFilters = () => {
 
   return {
     subscribe,
-    initialize (filters) { set(filters) }
+    set,
+    initialize: (choices) => {
+      set(choices)
+    }
   }
 }
 

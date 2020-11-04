@@ -5,16 +5,17 @@ import NumericInput from './NumericInput.svelte'
 import RangeSlider from './RangeSlider.svelte'
 
 import { selectedFilters } from '../stores/selected-filters.js'
-import { filters } from '../stores/filters.js'
+// import { filters } from '../stores/filters.js'
 
 export let category
 export let name
-let selectedLowerBound
-let selectedUpperBound
+
+// let selectedLowerBound = $filters[category][0]
+// let selectedUpperBound = $filters[category][1]
 </script>
 
   <h3>{name} : </h3>
-  <div class="inputs">
+  <!-- <div class="inputs">
     <NumericInput {name} bind:value={selectedLowerBound}/>
     -
     <NumericInput {name} bind:value={selectedUpperBound}/>
@@ -24,7 +25,7 @@ let selectedUpperBound
     max={$filters[category][1]}
     bind:low={selectedLowerBound}
     bind:up={selectedUpperBound}
-  />
+  /> -->
 
 <style lang="scss">
   .inputs {

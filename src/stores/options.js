@@ -6,6 +6,7 @@ const getFilters = (tracks) => {
   const difficulties = getOptions('difficulte', tracks)
   // const times = getRange('temps', tracks)
   const gains = getRange('deniv', tracks)
+
   return { sports, difficulties, gains }
 }
 
@@ -25,4 +26,4 @@ const getRange = (category, tracks) => {
   }
 }
 
-export const filters = derived(tracks, $tracks => getFilters($tracks))
+export const options = derived(tracks, $tracks => getFilters($tracks))

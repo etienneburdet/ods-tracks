@@ -1,23 +1,36 @@
 <script>
-import { onMount } from 'svelte/store'
+import { onDestroy } from 'svelte'
+import { options } from '../stores/options.js'
 import { selectedFilters } from '../stores/selected-filters.js'
-import { filters } from '../stores/filters.js'
 
 export let category
 export let name
 
-let checkedOptions
+const updateChoices = (event) => {
+  const choiceName = event.target.value
+  const choiceChecked = event.target.checked
+  const choiceIndex = $selectedFilters[category].indexOf(choiceName)
+
+  !choiceChecked && choiceIndex > -1
+    ? $selectedFilters[category].splice(choiceIndex, 1)
+    : $selectedFilters[category] = [...$selectedFilters[category], choiceName]
+}
+
+onDestroy(() => {
+  console.log($options[category])
+})
 </script>
 
 <div>
   <h3>{name} : </h3>
-  {#each $filters[category] as choice}
+  {#each $options[category] as option, index (option)}
     <label>
       <input type="checkbox"
-        bind:group={checkedOptions}
-        value={choice}
+        value={option}
+        checked={$selectedFilters[category].includes(option)}
+        on:change={updateChoices}
       >
-      {choice}
+      {option}
     </label>
   {/each}
 </div>
