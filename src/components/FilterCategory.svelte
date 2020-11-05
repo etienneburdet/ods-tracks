@@ -6,19 +6,6 @@ import { filtersChoices } from '../stores/filters-choices.js'
 export let category
 export let name
 
-// const updateChoices = (event) => {
-//   const choiceName = event.target.value
-//   const choiceChecked = event.target.checked
-//   const choiceIndex = $selectedFilters[category].indexOf(choiceName)
-//
-//   !choiceChecked && choiceIndex > -1
-//     ? $selectedFilters[category].splice(choiceIndex, 1)
-//     : $selectedFilters[category] = [...$selectedFilters[category], choiceName]
-// }
-
-// onDestroy(() => {
-//   console.log($filtersOptions[category])
-// })
 </script>
 
 <div>

@@ -32,9 +32,6 @@ const updateSelectedTrack = event => {
     ? displayedTrack.display(history.state.name)
     : displayedTrack.quit()
 }
-
-$: console.log($filteredTracks)
-$: console.log($filtersChoices)
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
