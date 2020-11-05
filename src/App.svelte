@@ -53,7 +53,7 @@ const updateSelectedTrack = event => {
     <FilterPill on:click={isFiltering.toggle}/>
     <List>
       {#each $filteredTracks as track (track.id)}
-        <ListItem {track} id={track.id} />
+        <ListItem {track} />
       {/each}
     </List>
   {/if}
