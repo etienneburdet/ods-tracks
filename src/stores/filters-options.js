@@ -26,4 +26,4 @@ const getRange = (category, tracks) => {
   }
 }
 
-export const options = derived(tracks, $tracks => getFilters($tracks))
+export const filtersOptions = derived(tracks, $tracks => getFilters($tracks))

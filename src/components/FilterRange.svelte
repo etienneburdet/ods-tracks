@@ -4,7 +4,7 @@ import { slide } from 'svelte/transition'
 import NumericInput from './NumericInput.svelte'
 import RangeSlider from './RangeSlider.svelte'
 
-import { selectedFilters } from '../stores/selected-filters.js'
+import { filtersChoices } from '../stores/filters-choices.js'
 // import { filters } from '../stores/filters.js'
 
 export let category

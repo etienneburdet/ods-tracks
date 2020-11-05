@@ -1,34 +1,33 @@
 <script>
 import { onDestroy } from 'svelte'
-import { options } from '../stores/options.js'
-import { selectedFilters } from '../stores/selected-filters.js'
+import { filtersOptions } from '../stores/filters-options.js'
+import { filtersChoices } from '../stores/filters-choices.js'
 
 export let category
 export let name
 
-const updateChoices = (event) => {
-  const choiceName = event.target.value
-  const choiceChecked = event.target.checked
-  const choiceIndex = $selectedFilters[category].indexOf(choiceName)
+// const updateChoices = (event) => {
+//   const choiceName = event.target.value
+//   const choiceChecked = event.target.checked
+//   const choiceIndex = $selectedFilters[category].indexOf(choiceName)
+//
+//   !choiceChecked && choiceIndex > -1
+//     ? $selectedFilters[category].splice(choiceIndex, 1)
+//     : $selectedFilters[category] = [...$selectedFilters[category], choiceName]
+// }
 
-  !choiceChecked && choiceIndex > -1
-    ? $selectedFilters[category].splice(choiceIndex, 1)
-    : $selectedFilters[category] = [...$selectedFilters[category], choiceName]
-}
-
-onDestroy(() => {
-  console.log($options[category])
-})
+// onDestroy(() => {
+//   console.log($filtersOptions[category])
+// })
 </script>
 
 <div>
   <h3>{name} : </h3>
-  {#each $options[category] as option, index (option)}
+  {#each $filtersOptions[category] as option}
     <label>
       <input type="checkbox"
         value={option}
-        checked={$selectedFilters[category].includes(option)}
-        on:change={updateChoices}
+        bind:group={$filtersChoices[category]}
       >
       {option}
     </label>

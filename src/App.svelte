@@ -17,13 +17,12 @@ import FilterRange from './components/FilterRange.svelte'
 import { displayedTrack } from './stores/displayed-track.js'
 import { tracks } from './stores/tracks.js'
 import { filteredTracks } from './stores/filtered-tracks.js'
-import { selectedFilters } from './stores/selected-filters.js'
-import { filtering } from './stores/filtering.js'
+import { filtersChoices } from './stores/filters-choices.js'
+import { filtersOptions } from './stores/filters-options.js'
+import { isFiltering } from './stores/is-filtering.js'
 
 onMount (async () => {
   await tracks.setList()
-  // selectedFilters.initialize($filters)
-
   const params = new URLSearchParams(document.location.search)
   const name = params.get('name')
   name && displayedTrack.display(name)
@@ -35,7 +34,8 @@ const updateSelectedTrack = event => {
     : displayedTrack.quit()
 }
 
-$: console.log($selectedFilters)
+$: console.log($filteredTracks)
+$: console.log($filtersChoices)
 </script>
 
 <svelte:window on:popstate={updateSelectedTrack} />
@@ -54,14 +54,14 @@ $: console.log($selectedFilters)
   {#if $displayedTrack}
     <Details track={$displayedTrack} on:click={displayedTrack.quit}/>
   {:else}
-    <FilterPill on:click={filtering.toggle}/>
+    <FilterPill on:click={isFiltering.toggle}/>
     <List>
       {#each $filteredTracks as track (track.id)}
         <ListItem {track} id={track.id} />
       {/each}
     </List>
   {/if}
-  {#if $filtering}
+  {#if $isFiltering}
     <FiltersMenu>
       <FilterCategory category="sports" name="Sports" />
       <FilterCategory category="difficulties" name="Difficlutés" />

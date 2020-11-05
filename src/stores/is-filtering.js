@@ -11,4 +11,4 @@ const initFiltering = () => {
   }
 }
 
-export const filtering = initFiltering()
+export const isFiltering = initFiltering()
