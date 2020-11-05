@@ -10,8 +10,9 @@ import { slide } from 'svelte/transition'
 <style>
 
   h1 {
-    font-size: 16px;
+    font-size: 21px;
     display: block;
+    padding-top: 34px;
     text-align: center;
     border-bottom: 1px solid #dadada;
   }
