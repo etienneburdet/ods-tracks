@@ -1,5 +1,11 @@
+<script>
+  import { isFiltering } from '../stores/is-filtering.js'
 
-<button on:click>
+  let hide
+  $: hide = $isFiltering
+</script>
+
+<button on:click class:hide>
   <img src="filter-outline.svg" alt="filters button logo"/>
   Filters
 </button>
@@ -23,5 +29,10 @@
     padding: 5px 8px;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15);
     z-index: 10;
+  }
+
+  .hide {
+    visibility: hidden;
+    display: none;
   }
 </style>
