@@ -6,7 +6,9 @@ import { filteredTracks } from '../stores/filtered-tracks.js'
 
 <div transition:slide>
   <h1>Filtres</h1>
-  <slot></slot>
+  <main>
+    <slot></slot>
+  </main>
   <footer>
     <button type="button" name="close">
       See {$filteredTracks.length} tracks
@@ -14,17 +16,7 @@ import { filteredTracks } from '../stores/filtered-tracks.js'
   </footer>
 </div>
 
-<style>
-
-  h1 {
-    flex: 0 0 auto;
-    font-size: 21px;
-    display: block;
-    padding-top: 34px;
-    text-align: center;
-    border-bottom: 1px solid #dadada;
-  }
-
+<style lang="scss">
   div {
     position: fixed;
     top: 0;
@@ -34,18 +26,36 @@ import { filteredTracks } from '../stores/filtered-tracks.js'
     flex-direction: column;
     background: white;
     z-index: 2;
-    padding: 21px;
     box-sizing: border-box;
+    * {
+      padding: 13px 21px;
+    }
   }
 
+  h1 {
+    flex: 0 0 auto;
+    font-size: 21px;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid #dadada;
+  }
+
+  main {
+    flex: 1 1 auto;
+  }
+
+
   footer {
-    border-top: 1px solid rgb(235, 235, 235);
+    flex: 0 0 auto;
+    border-top: 1px solid #dadada;
   }
 
   button {
-    position: absolute;
-    bottom: 0;
     display: block;
     width: 100%;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    border: none;
   }
 </style>
