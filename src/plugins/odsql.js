@@ -8,7 +8,8 @@ export const getRecordsUrl = (baseDomain = 'data') => (datasetId = 'datasetid') 
 const addQueryParamToUrl = url => clause => value => {
   const queryParams = new URLSearchParams(url)
   queryParams.append(clause, value)
-  const appendedUrl = new URL(url + queryParams)
+  const appendedUrl = new URL(url)
+  appendedUrl.search = queryParams
   return appendedUrl
 }
 
